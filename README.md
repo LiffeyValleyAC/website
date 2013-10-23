@@ -1,4 +1,1 @@
-website
-=======
-
-Source of liffeyvalley.com
+# [Liffey Valley Athletics Club](http://liffeyvalleyac.com)
