@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="lvac" default="deploy">
+    <property name="exportdir"  value="/var/www/lvac" />
+    <property name="repo" value="git@github.com:LiffeyValleyAC/website.git" />    
+    <tstamp>
+        <format property="build.time" pattern="%Y%m%d%H%I%S" />
+    </tstamp>
+    <target name="deploy">
+        <exec command="ssh mike@lvac.grff.in 'rm -rf ${exportdir}/current'" logoutput="yes"/>
+        <exec command="ssh mike@lvac.grff.in 'git clone --depth 1 ${repo} ${exportdir}/releases/${build.time}'" logoutput="yes"/>
+        <exec command="ssh mike@lvac.grff.in 'ln -s ${exportdir}/releases/${build.time} ${exportdir}/current'" logoutput="yes" />
+        <exec command="ssh mike@lvac.grff.in 'mkdir ${exportdir}/vendor'" logoutput="yes" />
+        <exec command="ssh mike@lvac.grff.in 'ln -s ${exportdir}/vendor ${exportdir}/current/vendor'" logoutput="yes" />
+        <exec command="ssh mike@lvac.grff.in 'cd ${exportdir}/current ; composer install'" logoutput="yes" />
+    </target>
+</project>
