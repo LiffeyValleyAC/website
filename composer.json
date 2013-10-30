@@ -5,12 +5,13 @@
   },
   "require-dev": {
     "phpunit/phpunit": "3.7.28",
-    "phing/phing": "2.6.1"
+    "phing/phing": "2.6.1",
+    "symfony/browser-kit": "v2.3.5"
   },
   "config": {
     "bin-dir": "bin/"
   },
   "autoload": {
-    "psr-0": {"LVAC\\": "src/"}
+    "psr-0": {"LVAC": "src/"}
   }
 }
