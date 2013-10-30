@@ -1,20 +1,21 @@
 <?php
+if (!defined('APP_ROOT')) {
+    define('APP_ROOT', __DIR__ . '/');
+}
 
-require 'vendor/autoload.php';
+// Include the composer stuff
+require APP_ROOT . 'vendor/autoload.php';
 
 $app = new Silex\Application();
-$app['debug'] = true;
 
 $app->register(
     new Silex\Provider\TwigServiceProvider(),
     array(
-        'twig.path' => __DIR__.'/templates',
+        'twig.path' => APP_ROOT . 'templates',
         'debug' => true
     )
 );
 
-$app->get('/', function () use ($app) {
-    return $app['twig']->render('index.html');
-});
+$app->mount('/', new LVAC\BaseControllerProvider());
 
-$app->run();
+return $app;
