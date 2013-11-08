@@ -1,8 +1,8 @@
-# [Liffey Valley Athletics Club](http://liffeyvalleyac.com)
+# [Liffey Valley Athletics Club](http://lvac.grff.in)
 
 ## About
 
-Liffey Valley Athletic Club formed in 1974 from the amalgamation of two other clubs Avondale A.C. and Inchicore A.C.
+[Liffey Valley Athletic Club](http://liffeyvalleyac.com) was formed in 1974 from the amalgamation of two other clubs Avondale A.C. and Inchicore A.C.
 
 This repository holds the code for a new version of our website. 
 
@@ -10,7 +10,9 @@ This repository holds the code for a new version of our website.
 
 You can go and look at [the test site](http://lvac.grff.in). Then come back and tell me what you think by opening an issue.
 
-If you want to run the code, you will need to have PHP (5.4 at least) and [composer](http://getcomposer.org) installed. Clone this repo and then run
+## I want to run it locally and hack all the codez
+
+You will need to have PHP (5.4 at least) and [composer](http://getcomposer.org) installed. Clone this repo and then run
 
 ```sh
 composer install
