@@ -26,9 +26,12 @@ class News {
         return $this->body;
     }
 
-    public function setDate($date)
+    public function setDate($date = null)
     {
-        $this->date = $date->format("Y-m-d H:i:s");
+        if ($date === null) {
+            $date = date("Y-m-d H:i:s");
+        }
+        $this->date = $date;
     }
 
     public function getDate()

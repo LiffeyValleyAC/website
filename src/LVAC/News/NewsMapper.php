@@ -39,12 +39,19 @@ class NewsMapper {
             $news->getBody(),
             $news->getDate()
         );
-        $stmt->execute($binds);
+        if ($stmt->execute($binds)) {
+            return $news;
+        }
+
+        return false;
     }
 
     public function createNewsFromRow($row)
     {
         $news = new News();
+        $news->setTitle($row['title']);
+        $news->setBody($row['body']);
+        $news->setDate($row['date']);
         return $news;
     }
 }
