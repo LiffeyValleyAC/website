@@ -2,6 +2,7 @@
 namespace LVAC\NewsTest;
 
 use \Mockery as m;
+use \Carbon\Carbon as c;
 
 class NewsTest extends \PHPUnit_Framework_TestCase
 {
@@ -51,5 +52,17 @@ class NewsTest extends \PHPUnit_Framework_TestCase
         $saved_news = $news->save($news_model);
 
         $this->assertFalse($saved_news);
+    }
+
+    public function testDateIsSetToNowIfPassedANullValue()
+    {
+        c::setTestNow(c::createFromDate(2013, 12, 18));
+        $expected = c::now();
+
+        $news = new \LVAC\News\News();
+        $news->setDate();
+        $result = $news->getDate();
+
+        $this->assertEquals($expected, $result);
     }
 }
