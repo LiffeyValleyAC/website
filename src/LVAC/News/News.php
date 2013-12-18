@@ -1,6 +1,8 @@
 <?php
 namespace LVAC\News;
 
+use \Carbon\Carbon as c;
+
 class News {
     protected $title;
     protected $body;
@@ -29,7 +31,7 @@ class News {
     public function setDate($date = null)
     {
         if ($date === null) {
-            $date = date("Y-m-d H:i:s");
+            $date = c::now();
         }
         $this->date = $date;
     }
