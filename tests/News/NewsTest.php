@@ -14,7 +14,7 @@ class NewsTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testGetNewsReturnsTenNewsItems()
+    public function testGetNewsReturnsTenNewsItemsByDefault()
     {
         $news = new \LVAC\News\NewsMapper($this->db);
         $result = $news->getNews();
