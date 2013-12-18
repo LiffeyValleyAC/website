@@ -19,7 +19,7 @@ for ($i = 0; $i < 20; $i++) {
     $news = new \LVAC\News\News();
     $news->setTitle($faker->sentence(rand(3, 10)));
     $news->setBody($faker->paragraph(rand(3, 10)));
-    $news->setDate($faker->dateTimeBetween('-3 years', 'now'));
+    $news->setDate($faker->dateTimeBetween('-3 years', 'now')->format('Y-m-d H:i:s'));
 
     $news_mapper->save($news);
 }
