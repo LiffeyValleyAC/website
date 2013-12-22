@@ -11,13 +11,13 @@ class NewsMapper {
         }
     }
 
-    public function getNews()
+    public function getNews($limit = 10)
     {
         $sql = "
-            SELECT * FROM news LIMIT 10
+            SELECT * FROM news LIMIT ?
             ";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
+        $stmt->execute(array($limit));
         $rows = $stmt->fetchAll();
 
         $result = array();

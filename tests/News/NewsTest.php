@@ -22,6 +22,14 @@ class NewsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(10, count($result));
     }
 
+    public function testGetNewsReturnsFiveNewsItemsIfAsked()
+    {
+        $news = new \LVAC\News\NewsMapper($this->db);
+        $result = $news->getNews(5);
+
+        $this->assertEquals(5, count($result));
+    }
+
     public function testSaveWorksWithMocking()
     {
         $mock = m::mock('StdClass');
