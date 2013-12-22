@@ -7,4 +7,4 @@ $db = new \PDO(
     'sqlite:LVAC.sqlite'
 );
 $db->exec("DROP TABLE IF EXISTS news");
-$db->exec("CREATE TABLE news (id INTEGER PRIMARY KEY ASC, title TEXT, body TEXT, date)");
+$db->exec("CREATE TABLE news (id INTEGER PRIMARY KEY ASC, title TEXT, body TEXT, date, slug TEXT)");
