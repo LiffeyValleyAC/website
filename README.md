@@ -1,5 +1,7 @@
 # [Liffey Valley Athletics Club](http://lvac.grff.in)
 
+[![Build Status](https://travis-ci.org/LiffeyValleyAC/website.png?branch=master)](https://travis-ci.org/LiffeyValleyAC/website)
+
 ## About
 
 [Liffey Valley Athletic Club](http://liffeyvalleyac.com) was formed in 1974 from the amalgamation of two other clubs Avondale A.C. and Inchicore A.C.
