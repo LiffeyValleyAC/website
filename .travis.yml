@@ -5,4 +5,4 @@ before_script:
   - php seed/db_setup.php
   - php seed/news.php
 install:
-  - composer update
+  - composer update --prefer-dist
