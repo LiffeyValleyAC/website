@@ -7,6 +7,7 @@ class News {
     protected $title;
     protected $body;
     protected $date;
+    protected $slug;
 
     public function setTitle($title)
     {
@@ -39,5 +40,25 @@ class News {
     public function getDate()
     {
         return $this->date;
+    }
+
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    public function createSlug($title, $date)
+    {
+        $date = date('Ymd', strtotime($date));
+        $title = strtolower($title);
+        $title = preg_replace('/[^a-z ]/', '', $title);
+        $title = preg_replace('/ /', '-', $title);
+
+        return "{$date}-{$title}";
     }
 }

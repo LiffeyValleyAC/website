@@ -30,6 +30,14 @@ class NewsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(5, count($result));
     }
 
+    public function testNewsModelHasSpecificAttributes()
+    {
+        $this->assertClassHasAttribute('title', '\LVAC\News\News');
+        $this->assertClassHasAttribute('body', '\LVAC\News\News');
+        $this->assertClassHasAttribute('date', '\LVAC\News\News');
+        $this->assertClassHasAttribute('slug', '\LVAC\News\News');
+    }
+
     public function testSaveWorksWithMocking()
     {
         $mock = m::mock('StdClass');
@@ -72,5 +80,13 @@ class NewsTest extends \PHPUnit_Framework_TestCase
         $result = $news->getDate();
 
         $this->assertEquals($expected, $result);
+    }
+
+    public function testSlugGetsCreated()
+    {
+        $news = new \LVAC\News\News();
+        $result = $news->createSlug('This is a title', '2013-12-22 12:00:00');
+
+        $this->assertEquals('20131222-this-is-a-title', $result);
     }
 }
