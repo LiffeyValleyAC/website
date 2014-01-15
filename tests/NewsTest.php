@@ -10,8 +10,22 @@ class NewsTest extends \PHPUnit_Framework_TestCase
     public function __construct()
     {
         $this->db = new \PDO(
-            'sqlite:LVAC.sqlite'
+            'sqlite::memory:'
         );
+        $this->db->exec("CREATE TABLE news (id INTEGER PRIMARY KEY ASC, title TEXT, body TEXT, date, slug TEXT)");
+
+        $news_mapper = new \LVAC\News\NewsMapper($this->db);
+        $faker = \Faker\Factory::create();
+
+        for ($i = 0; $i < 20; $i++) {
+            $news = new \LVAC\News\News();
+            $news->setTitle($faker->sentence(rand(3, 10)));
+            $news->setBody($faker->paragraph(rand(3, 10)));
+            $news->setDate($faker->dateTimeBetween('-3 years', 'now')->format('Y-m-d H:i:s'));
+            $news->setSlug($news->createSlug($news->getTitle(), $news->getDate()));
+
+            $news_mapper->save($news);
+        }
     }
 
     public function testGetNewsReturnsTenNewsItemsByDefault()
