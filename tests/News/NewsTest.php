@@ -1,5 +1,5 @@
 <?php
-namespace LVAC\NewsTest;
+namespace LVAC\Test\News;
 
 use \Mockery as m;
 use \Carbon\Carbon as c;
