@@ -1,7 +1,7 @@
 <?php
-namespace LVAC\Users;
+namespace LVAC\User;
 
-class Users {
+class User {
     protected $name;
 
     public function setName($name)
