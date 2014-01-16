@@ -1,8 +1,5 @@
 language: php
 php:
   - 5.4
-before_script:
-  - php seed/db_setup.php
-  - php seed/news.php
 install:
   - composer update --prefer-dist
