@@ -3,22 +3,31 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Liffey Valley AC</title>
+    <title>Liffey Valley Athletics Club</title>
 
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link href="assets/css/lvac.css" rel="stylesheet">
   </head>
   <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a href="#" class="navbar-brand"><img src="assets/images/logo.png" />Liffey Valley AC</a>
-        </div>
-      </div>
-    </div>
     <div class="container">
+      <div id="header">
+        <h1><a href="/">Liffey Valley Athletics Club</a></h1>
+        <a href="/"><img src="/assets/images/new_logo.png" alt=""></a>
+      </div>
+      <div class="row links">
+        <div class="col-md-2 text-center"><a href="/">Home</a></div>
+        <div class="col-md-2 text-center"><a href="#">Training</a></div>
+        <div class="col-md-2 text-center"><a href="#">Fixtures</a></div>
+        <div class="col-md-2 text-center"><a href="#">News</a></div>
+        <div class="col-md-2 text-center"><a href="#">History</a></div>
+        <div class="col-md-2 text-center"><a href="#">Gallery</a></div>
+      </div>
+      <div id="photo">
+        <img src="/assets/images/marquee.jpg" alt="">
+      </div>
       {% block content %}
       {% endblock %}
     </div>
+  </div>
   </body>
 </html>
