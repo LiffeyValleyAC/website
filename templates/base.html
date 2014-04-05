@@ -6,29 +6,34 @@
     <title>Liffey Valley Athletics Club</title>
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link href="assets/css/lvac.css" rel="stylesheet">
   </head>
   <body>
-    <div class="container">
+    <div id="container">
       <div id="header">
-        <h1><a href="/">Liffey Valley Athletics Club</a></h1>
+        <h1><a href="/"><span class="yellow">Liffey</span> Valley Athletics Club</a></h1>
         <a href="/"><img src="/assets/images/new_logo.png" alt=""></a>
       </div>
-      <div class="row links">
-        <div class="col-md-2 text-center"><a href="/">Home</a></div>
-        <div class="col-md-2 text-center"><a href="#">Training</a></div>
-        <div class="col-md-2 text-center"><a href="#">Fixtures</a></div>
-        <div class="col-md-2 text-center"><a href="#">News</a></div>
-        <div class="col-md-2 text-center"><a href="#">History</a></div>
-        <div class="col-md-2 text-center"><a href="#">Gallery</a></div>
+      <div class="links">
+        <ul class="navlist">
+          <li><a href="/">Home</a></li>
+          <li><a href="#">Training</a></li>
+          <li><a href="#">News</a></li>
+          <li><a href="#">Fixtures</a></li>
+          <li><a href="#">History</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#">Members</a></li>
+        </ul>
       </div>
       <div id="photo">
         <img src="/assets/images/marquee.jpg" alt="">
       </div>
       {% block content %}
       {% endblock %}
+      <div id="footer">
+        <p>Liffey Valley Athletics Club, Sandpitts Cottage, Islandbridge, Dublin 8</p>
+        <p>Contact: Club Secretary, Mark Toher (087 9558320) or marktoherlvac@gmail.com</p>
+      </div>
     </div>
-  </div>
   </body>
 </html>
