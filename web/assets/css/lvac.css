@@ -13,35 +13,12 @@ body {
   font-size: 16px;
   line-height: 1.428;
 }
-#container {
-  width: 960px;
-  max-width: 90%;
-  margin: 0 auto;
-}
-#header {
-  height: 250px;
-  color: #254467;
-  background: url('/assets/images/header.png') #f9ed32 no-repeat top left;
-  margin: -20px 0;
-  position: relative;
-}
-#header h1 {
-  padding: 150px 0 0 200px;
-  font-size: 350%;
-  font-weight: bold;
-  margin: 0;
-}
 #header h1 a {
   color: #254467;
   text-decoration: none;
 }
 .yellow {
   color: #f9ed32;
-}
-#header img {
-  position: absolute;
-  top: 20px;
-  left: 215px;
 }
 .links {
   background-color: #254467;
@@ -87,19 +64,6 @@ body {
   background-color: #111;
   overflow: auto;
 }
-#main {
-  width: 620px;
-  float: left;
-}
-#sidebar {
-  width: 310px;
-  float: right;
-}
-.twocol, .onecol {
-  width: 290px;
-  float: left;
-  padding: 0 10px;
-}
 .join .head {
   font-size: 200%;
   margin: 0;
@@ -142,11 +106,6 @@ body {
 .join:active {
   position:relative;
   top:1px;
-}
-.video {
-  overflow: hidden;
-  width: 290px;
-  height: 180px;
 }
 #footer {
   font-size: 80%;
