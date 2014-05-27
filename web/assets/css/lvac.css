@@ -15,7 +15,6 @@ body {
 }
 #container {
   width: 960px;
-  max-width: 90%;
   margin: 0 auto;
 }
 #header {
@@ -69,7 +68,7 @@ body {
 .links ul li a:hover
 {
   background-color: #369;
-  color: #fff;
+  color: #fea;
   text-decoration: underline;
 }
 #photo {
@@ -84,7 +83,7 @@ body {
 }
 #content {
   padding: 10px;
-  background-color: #111;
+  background-color: #181818;
   overflow: auto;
 }
 #main {
