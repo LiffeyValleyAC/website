@@ -8,6 +8,7 @@ class News {
     protected $body;
     protected $date;
     protected $slug;
+    protected $location;
 
     public function setTitle($title)
     {
@@ -60,5 +61,15 @@ class News {
         $title = preg_replace('/ /', '-', $title);
 
         return "{$date}-{$title}";
+    }
+
+    public function setLocation($location)
+    {
+        $this->location = $location;
+    }
+
+    public function getLocation()
+    {
+        return $this->location;
     }
 }
