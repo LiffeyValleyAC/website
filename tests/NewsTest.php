@@ -12,7 +12,16 @@ class NewsTest extends \PHPUnit_Framework_TestCase
         $this->db = new \PDO(
             'sqlite::memory:'
         );
-        $this->db->exec("CREATE TABLE news (id INTEGER PRIMARY KEY ASC, title TEXT, body TEXT, date, slug TEXT)");
+        $sql = "CREATE TABLE news
+            (
+                id INTEGER PRIMARY KEY ASC,
+                title TEXT,
+                body TEXT,
+                date,
+                slug TEXT,
+                location TEXT
+            )";
+        $this->db->exec($sql);
 
         $news_mapper = new \LVAC\News\NewsMapper($this->db);
         $faker = \Faker\Factory::create();
@@ -23,6 +32,7 @@ class NewsTest extends \PHPUnit_Framework_TestCase
             $news->setBody($faker->paragraph(rand(3, 10)));
             $news->setDate($faker->dateTimeBetween('-3 years', 'now')->format('Y-m-d H:i:s'));
             $news->setSlug($news->createSlug($news->getTitle(), $news->getDate()));
+            $news->setLocation($faker->streetName());
 
             $news_mapper->save($news);
         }
@@ -50,6 +60,7 @@ class NewsTest extends \PHPUnit_Framework_TestCase
         $this->assertClassHasAttribute('body', '\LVAC\News\News');
         $this->assertClassHasAttribute('date', '\LVAC\News\News');
         $this->assertClassHasAttribute('slug', '\LVAC\News\News');
+        $this->assertClassHasAttribute('location', '\LVAC\News\News');
     }
 
     public function testSaveWorksWithMocking()

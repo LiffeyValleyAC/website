@@ -31,14 +31,15 @@ class NewsMapper {
     public function save(\LVAC\News\News $news)
     {
         $sql = "
-            INSERT INTO news (title, body, date, slug) VALUES (?, ?, ?, ?)
+            INSERT INTO news (title, body, date, slug, location) VALUES (?, ?, ?, ?, ?)
             ";
         $stmt = $this->conn->prepare($sql);
         $binds = array(
             $news->getTitle(),
             $news->getBody(),
             $news->getDate(),
-            $news->getSlug()
+            $news->getSlug(),
+            $news->getLocation()
         );
         if ($stmt->execute($binds)) {
             return $news;
@@ -54,6 +55,7 @@ class NewsMapper {
         $news->setBody($row['body']);
         $news->setDate($row['date']);
         $news->setSlug($row['slug']);
+        $news->setLocation($row['location']);
         return $news;
     }
 }
