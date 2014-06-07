@@ -43,8 +43,11 @@ class News {
         return $this->date;
     }
 
-    public function setSlug($slug)
+    public function setSlug($slug = null)
     {
+        if($slug === null) {
+            $slug = $this->createSlug($this->title, $this->date);
+        }
         $this->slug = $slug;
     }
 
