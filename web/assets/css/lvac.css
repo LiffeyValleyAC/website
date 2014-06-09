@@ -13,6 +13,9 @@ body {
   font-size: 16px;
   line-height: 1.428;
 }
+h2, h3 {
+  color: #ffd801;
+}
 #container {
   width: 960px;
   margin: 0 auto;
@@ -157,8 +160,12 @@ body {
 }
 .title a {
   font-size: 120%;
-  color: #ddd;
+  color: #ffd801;
   padding: 0  20px 0 20px;
+}
+.larger {
+  font-size: 200%;
+  color: #ffd801;
 }
 hr {
   border-color: #888;
