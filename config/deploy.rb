@@ -27,7 +27,17 @@ namespace :deploy do
     end
   end
 
+  desc 'Create the sqlite database'
+  task :create_db do
+    on roles(:web) do
+      within '/var/www/lvac/current' do
+        execute "php cli/read_dump.php"
+      end
+    end
+  end
+
   after :finished, :composer
   after :composer, :restart_fpm
+  after :restart_fpm, :create_db
 
 end
