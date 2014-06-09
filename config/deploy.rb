@@ -31,7 +31,7 @@ namespace :deploy do
   task :create_db do
     on roles(:web) do
       within '/var/www/lvac/current' do
-        execute "php cli/read_dump.php"
+        execute "php /var/www/lvac/current/cli/read_dump.php"
       end
     end
   end
