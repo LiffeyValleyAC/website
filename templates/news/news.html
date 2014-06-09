@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="bar">
+  &nbsp;
+</div>
+<div id="content">
+  <hr>
+  <div class="title"><div class="larger">{{ news.getTitle }}</div>
+    {{ news.getDate | date("l, F jS, Y") }}</div>
+  {{ news.body|raw }}
+  <hr>
+</div>
+{% endblock %}
