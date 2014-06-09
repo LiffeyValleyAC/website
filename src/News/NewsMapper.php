@@ -29,6 +29,20 @@ class NewsMapper {
         return $result;
     }
 
+    public function getNewsBySlug($slug)
+    {
+        $sql = "
+            SELECT * FROM news WHERE slug = ?
+            ";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(array($slug));
+        $row = $stmt->fetch();
+
+        $result = $this->createNewsFromRow($row);
+
+        return $result;
+    }
+
     public function save(\LVAC\News\News $news)
     {
         $sql = "

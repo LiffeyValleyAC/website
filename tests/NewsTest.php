@@ -114,4 +114,23 @@ class NewsTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('20131222-this-is-a-title', $result);
     }
+
+    public function testGetNewsBySlug()
+    {
+        $faker = \Faker\Factory::create();
+        $mapper = new \LVAC\News\NewsMapper($this->db);
+
+        $expected = new \LVAC\News\News();
+        $expected->setTitle('My lovely horse');
+        $expected->setBody($faker->paragraph(rand(3, 10)));
+        $expected->setDate('2014-06-06 12:00:00');
+        $expected->setSlug();
+        $expected->setLocation($faker->streetName());
+
+        $mapper->save($expected);
+
+        $result = $mapper->getNewsBySlug('20140606-my-lovely-horse');
+
+        $this->assertEquals($expected->getTitle(), $result->getTitle());
+    }
 }
