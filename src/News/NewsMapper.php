@@ -1,5 +1,6 @@
 <?php
 namespace LVAC\News;
+use \PDO;
 
 class NewsMapper {
     protected $conn;
@@ -14,7 +15,7 @@ class NewsMapper {
     public function getNews($limit = 10)
     {
         $sql = "
-            SELECT * FROM news LIMIT ?
+            SELECT * FROM news ORDER BY date DESC LIMIT ?
             ";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(array($limit));

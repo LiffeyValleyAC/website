@@ -8,6 +8,11 @@ require APP_ROOT . 'vendor/autoload.php';
 
 $app = new Silex\Application();
 
+$app['db'] = new \PDO(
+    'sqlite:' . APP_ROOT . 'LVAC.sqlite'
+);
+$app['db']->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+
 $app->register(
     new Silex\Provider\TwigServiceProvider(),
     array(
@@ -17,5 +22,6 @@ $app->register(
 );
 
 $app->mount('/', new LVAC\BaseControllerProvider());
+$app->mount('/news', new LVAC\NewsControllerProvider());
 
 return $app;
