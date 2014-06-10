@@ -4,3 +4,4 @@ php:
 install:
   - composer self-update
   - composer update --prefer-dist
+  - php cli/read_dump.php
