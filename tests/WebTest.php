@@ -22,4 +22,39 @@ class WebTest extends WebTestCase
             "The web page response is wrong"
         );
     }
+
+    public function testTrainingPage()
+    {
+        $client = $this->createClient();
+        $crawler = $client->request('GET', '/training');
+
+        $this->assertTrue(
+            $client->getResponse()->isOK(),
+            "The web page response is wrong"
+        );
+    }
+
+    public function testNewsPage()
+    {
+        $client = $this->createClient();
+        $client->followRedirects();
+        $crawler = $client->request('GET', '/news');
+
+        $this->assertTrue(
+            $client->getResponse()->isOK(),
+            "The web page response is wrong"
+        );
+    }
+
+    public function testSingleNewsPage()
+    {
+        $client = $this->createClient();
+        $client->followRedirects();
+        $crawler = $client->request('GET', '/news/20140119-leinster-senior-xc');
+
+        $this->assertTrue(
+            $client->getResponse()->isOK(),
+            "The web page response is wrong"
+        );
+    }
 }
