@@ -32,6 +32,7 @@ class WebTest extends WebTestCase
             $client->getResponse()->isOK(),
             "The web page response is wrong"
         );
+        $this->assertRegexp('/Training/', $crawler->filterXpath('//title')->text());
     }
 
     public function testNewsPage()
@@ -44,6 +45,7 @@ class WebTest extends WebTestCase
             $client->getResponse()->isOK(),
             "The web page response is wrong"
         );
+        $this->assertRegexp('/News Archive/', $crawler->filterXpath('//title')->text());
     }
 
     public function testSingleNewsPage()
@@ -56,5 +58,6 @@ class WebTest extends WebTestCase
             $client->getResponse()->isOK(),
             "The web page response is wrong"
         );
+        $this->assertRegexp('/Leinster Senior XC/', $crawler->filterXpath('//title')->text());
     }
 }
