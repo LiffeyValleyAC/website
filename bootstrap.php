@@ -21,12 +21,7 @@ $app->register(
     )
 );
 
-$app->register(
-    new Silex\Provider\SecurityServiceProvider(),
-    array(
-        'security.firewalls' => // see below
-    )
-);
+$app->register(new Silex\Provider\SecurityServiceProvider());
 $app['security.firewalls'] = array(
     'admin' => array(
         'pattern' => '^/admin/',

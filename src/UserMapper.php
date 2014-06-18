@@ -1,5 +1,9 @@
 <?php
 namespace LVAC;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
+use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 
 class UserMapper implements UserProviderInterface
 {
@@ -10,7 +14,7 @@ class UserMapper implements UserProviderInterface
         $this->conn = $conn;
     }
 
-    public function loadUserByUsername(string $username)
+    public function loadUserByUsername($username)
     {
         try {
             $sql = "SELECT * FROM users WHERE email = ?";
@@ -19,10 +23,12 @@ class UserMapper implements UserProviderInterface
             $row = $statement->fetch();
 
             if (false === $row) {
-                thrown new UsernameNotFoundException(sprintf('Username "%s" does not exist.', $username));
+                throw new UsernameNotFoundException(sprintf('Username "%s" does not exist.', $username));
             }
 
             return $this->createUserFromRow($row);
+        } catch (\Exception $e) {
+            echo "Uh oh: ", $e->getMessage();
         }
     }
 
@@ -35,9 +41,9 @@ class UserMapper implements UserProviderInterface
         return $this->loadUserByUsername($user->getUsername());
     }
 
-    public function supportsClass(string $class)
+    public function supportsClass($class)
     {
-        return class === '\LVAC\User';
+        return $class === '\LVAC\User';
     }
 
     public function createUserFromRow($row)
