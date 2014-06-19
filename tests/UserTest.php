@@ -1,13 +1,13 @@
 <?php
-namespace LVAC\Test\User;
+namespace LVAC\Test;
 
 class UserTest extends \PHPUnit_Framework_TestCase
 {
     public function testUserObject()
     {
-        $user = new \LVAC\User\User();
-        $user->setName('Wile E. Coyote');
+        $user = new \LVAC\User();
+        $user->setUsername('Wile E. Coyote');
 
-        $this->assertEquals('Wile E. Coyote', $user->getName());
+        $this->assertEquals('Wile E. Coyote', $user->getUsername());
     }
 }

@@ -1,6 +1,7 @@
 {
   "require": {
     "silex/silex": "v1.1.2",
+    "symfony/security": "~2.3",
     "twig/twig": "1.15.0",
     "nesbot/carbon": "1.8.0"
   },
