@@ -60,4 +60,34 @@ class WebTest extends WebTestCase
         );
         $this->assertRegexp('/Leinster Senior XC/', $crawler->filterXpath('//title')->text());
     }
+
+    public function testLoginPage()
+    {
+        $client = $this->createClient();
+        $client->followRedirects();
+        $crawler = $client->request('GET', '/login');
+
+        $this->assertTrue(
+            $client->getResponse()->isOK(),
+            "The web page response is wrong"
+        );
+        $this->assertRegexp('/Login/', $crawler->filterXpath('//title')->text());
+    }
+
+    public function testLoginPageFormWithNothingFilledIn()
+    {
+        $client = $this->createClient();
+        $client->followRedirects();
+        $crawler = $client->request('GET', '/login');
+
+        $form = $crawler->selectButton('Log In')->form();
+        $crawler = $client->submit($form);
+
+        $this->assertTrue(
+            $client->getResponse()->isOK(),
+            "The web page response is wrong"
+        );
+        $this->assertRegexp('/Login/', $crawler->filterXpath('//title')->text());
+        echo $crawler->html();
+    }
 }
