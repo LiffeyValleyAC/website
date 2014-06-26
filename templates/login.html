@@ -7,7 +7,7 @@
 </div>
 <div id="content">
   {% if error is defined %}
-  <div class="alert alert-danger">{{ error }}</div>
+  <div class="alert alert-danger">Error: {{ error }}</div>
   {% endif %}
   <form method="post" action='/login'>
     <label for="email">Email address</label>

@@ -88,6 +88,25 @@ class WebTest extends WebTestCase
             "The web page response is wrong"
         );
         $this->assertRegexp('/Login/', $crawler->filterXpath('//title')->text());
-        echo $crawler->html();
+        $this->assertRegexp('/Error: /', $crawler->filterXpath("//div[@class and contains(concat(' ',normalize-space(@class),' '), ' alert ')]")->text());
+    }
+
+    public function testLoginPageFormWithAnIncorrectUsernameAndPassword()
+    {
+        $client = $this->createClient();
+        $client->followRedirects();
+        $crawler = $client->request('GET', '/login');
+
+        $form = $crawler->selectButton('Log In')->form();
+        $form['email'] = 'fake@wrong.fake';
+        $form['password'] = 'this is wrong';
+        $crawler = $client->submit($form);
+
+        $this->assertTrue(
+            $client->getResponse()->isOK(),
+            "The web page response is wrong"
+        );
+        $this->assertRegexp('/Login/', $crawler->filterXpath('//title')->text());
+        $this->assertRegexp('/Error: /', $crawler->filterXpath("//div[@class and contains(concat(' ',normalize-space(@class),' '), ' alert ')]")->text());
     }
 }
