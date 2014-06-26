@@ -6,6 +6,8 @@ if (!defined('APP_ROOT')) {
 // Include the composer stuff
 require APP_ROOT . 'vendor/autoload.php';
 
+use Symfony\Component\HttpFoundation\Request;
+
 $app = new Silex\Application();
 
 $app['db'] = new \PDO(
@@ -29,16 +31,18 @@ $app->mount('/members', new LVAC\MembersControllerProvider());
 $app->get('/login', function () use ($app) {
     return $app['twig']->render('/login.html');
 });
-$app->post('/login', function () use ($app) {
-    if (!isset($request->get['email']) || !isset($request->get['password'])) {
+$app->post('/login', function (Request $request) use ($app) {
+    /*
+    if (!isset($request->get('email')) || !isset($request->get('password'))) {
         $error = "You have to fill in your email and password";
         return $app['twig']->render('/login.html', array('error' => $error));
     }
-    $email = $request->get['email'];
-    $password = $request->get['password'];
+     */
+    $email = $request->get('email');
+    $password = $request->get('password');
 
     $member_mapper = new \LVAC\MemberMapper($app['db']);
-    if (false === $member = $member_mapper->check_login($email, $password)) {
+    if (false === $member = $member_mapper->checkLogin($email, $password)) {
         // throw some errors
         $error = "The username or password was incorrect";
         return $app['twig']->render('/login.html', array('error' => $error, 'email' => $email));

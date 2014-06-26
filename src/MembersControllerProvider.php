@@ -12,7 +12,7 @@ class MembersControllerProvider implements ControllerProviderInterface
         $controllers = $app['controllers_factory'];
 
         $controllers->get('/', function (Application $app) {
-            if (null === $user = $app['session']->get('user')) {
+            if (null === $member = $app['session']->get('member')) {
                 return $app->redirect('/login');
             }
             return $app['twig']->render('members/index.html');
