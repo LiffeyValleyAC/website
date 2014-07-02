@@ -30,7 +30,7 @@ namespace :deploy do
   desc 'Create the sqlite database'
   task :create_db do
     on roles(:web) do
-      execute "cd /var/www/lvac/current && php cli/read_dump.php"
+      execute "cd /var/www/lvac/current && php seed/db_setup.php"
     end
   end
 
