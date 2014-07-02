@@ -1,7 +1,8 @@
 language: php
 php:
   - 5.4
+  - 5.5
 install:
   - composer self-update
   - composer update --prefer-dist
-  - php cli/read_dump.php
+  - php seed/db_setup.php

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - {% endblock %}
+{% block content %}
+<div class="bar">
+  &nbsp;
+</div>
+<div id="content">
+  {% if error is defined %}
+  <div class="alert alert-danger">Error: {{ error }}</div>
+  {% endif %}
+  <form method="post" action='/login'>
+    <label for="email">Email address</label>
+    <input type="email" placeholder="youraddress@email.com" name="email" id="email" />
+    <label for="password">Password</label>
+    <input type="password" placeholder="your password" name="password" id="password" />
+    <input type="submit" name="Log In" />
+  </form>
+</div>
+{% endblock %}

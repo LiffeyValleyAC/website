@@ -8,6 +8,7 @@ class WebTest extends WebTestCase
         $app = require __DIR__.'/../bootstrap.php';
         $app['debug'] = true;
         $app['exception_handler']->disable();
+        $app['session.test'] = true;
 
         return $app;
     }
@@ -59,5 +60,73 @@ class WebTest extends WebTestCase
             "The web page response is wrong"
         );
         $this->assertRegexp('/Leinster Senior XC/', $crawler->filterXpath('//title')->text());
+    }
+
+    public function testLoginPage()
+    {
+        $client = $this->createClient();
+        $client->followRedirects();
+        $crawler = $client->request('GET', '/login');
+
+        $this->assertTrue(
+            $client->getResponse()->isOK(),
+            "The web page response is wrong"
+        );
+        $this->assertRegexp('/Login/', $crawler->filterXpath('//title')->text());
+    }
+
+    public function testLoginPageFormWithNothingFilledIn()
+    {
+        $client = $this->createClient();
+        $client->followRedirects();
+        $crawler = $client->request('GET', '/login');
+
+        $form = $crawler->selectButton('Log In')->form();
+        $crawler = $client->submit($form);
+
+        $this->assertTrue(
+            $client->getResponse()->isOK(),
+            "The web page response is wrong"
+        );
+        $this->assertRegexp('/Login/', $crawler->filterXpath('//title')->text());
+        $this->assertRegexp('/Error: /', $crawler->filterXpath("//div[@class and contains(concat(' ',normalize-space(@class),' '), ' alert ')]")->text());
+    }
+
+    public function testLoginPageFormWithAnIncorrectUsernameAndPassword()
+    {
+        $client = $this->createClient();
+        $client->followRedirects();
+        $crawler = $client->request('GET', '/login');
+
+        $form = $crawler->selectButton('Log In')->form();
+        $form['email'] = 'fake@wrong.fake';
+        $form['password'] = 'this is wrong';
+        $crawler = $client->submit($form);
+
+        $this->assertTrue(
+            $client->getResponse()->isOK(),
+            "The web page response is wrong"
+        );
+        $this->assertRegexp('/Login/', $crawler->filterXpath('//title')->text());
+        $this->assertRegexp('/Error: /', $crawler->filterXpath("//div[@class and contains(concat(' ',normalize-space(@class),' '), ' alert ')]")->text());
+    }
+
+    public function testLoginPageFormWithGoodCredentials()
+    {
+        $client = $this->createClient();
+        $client->followRedirects();
+        $crawler = $client->request('GET', '/login');
+
+        $form = $crawler->selectButton('Log In')->form();
+        $form['email'] = 'fortest@test.fake';
+        $form['password'] = '';
+        $crawler = $client->submit($form);
+
+        $this->assertTrue(
+            $client->getResponse()->isOK(),
+            "The web page response is wrong"
+        );
+        $this->assertRegexp('/Members/', $crawler->filterXpath('//title')->text());
+        $this->assertNotRegexp('/Error: /', $crawler->filterXpath("//div")->text());
     }
 }
