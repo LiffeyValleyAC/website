@@ -12,7 +12,9 @@ class BaseControllerProvider implements ControllerProviderInterface
         $controllers = $app['controllers_factory'];
 
         $controllers->get('/', function () use ($app) {
-            return $app['twig']->render('index.html');
+            $mapper = new \LVAC\News\NewsMapper($app['db']);
+            $news = $mapper->getNews(3);
+            return $app['twig']->render('index.html', array('news' => $news));
         });
 
         $controllers->get('/training', function () use ($app) {

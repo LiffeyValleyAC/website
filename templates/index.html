@@ -35,6 +35,12 @@
         <img src="/assets/images/backs.jpg" alt="">
       </div>
       <h2>News</h2>
+      <ul>
+        {% for article in news %}
+        <li class="news"><a href="/news/{{ article.getSlug }}">{{ article.getTitle }}</a></li>
+        {% endfor %}
+      </ul>
+      <span class="news"><a href="/news">More News</a></span>
     </div>
   </div>
 </div>

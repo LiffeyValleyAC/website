@@ -163,6 +163,9 @@ h2, h3 {
   color: #ffd801;
   padding: 0  20px 0 20px;
 }
+.news a {
+  color: #ffd801;
+}
 .larger {
   font-size: 200%;
   color: #ffd801;
