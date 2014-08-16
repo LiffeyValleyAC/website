@@ -10,9 +10,11 @@ use Symfony\Component\HttpFoundation\Request;
 
 $app = new Silex\Application();
 
-$app['db'] = new \PDO(
-    'sqlite:' . APP_ROOT . 'LVAC.sqlite'
-);
+if (file_exists(APP_ROOT . 'database.php')) {
+    require APP_ROOT . 'database.php';
+} else {
+    throw new RuntimeException("There is no database configuration");
+}
 $app['db']->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
 $app->register(

@@ -3,3 +3,4 @@ bin/
 build/
 LVAC.sqlite
 .bundle/
+database.php
