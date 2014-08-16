@@ -15,10 +15,11 @@ class NewsMapper {
     public function getNews($limit = 10)
     {
         $sql = "
-            SELECT * FROM news ORDER BY date DESC LIMIT ?
+            SELECT * FROM news ORDER BY date DESC LIMIT :limit
             ";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute(array($limit));
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
         $rows = $stmt->fetchAll();
 
         $result = array();
