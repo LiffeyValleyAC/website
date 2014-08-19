@@ -52,5 +52,9 @@ $app->post('/login', function (Request $request) use ($app) {
     $app['session']->set('member', array('email' => $email));
     return $app->redirect('/members');
 });
+$app->get('/logout', function () use ($app) {
+    $app['session']->invalidate();
+    return $app->redirect('/');
+});
 
 return $app;
