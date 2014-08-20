@@ -49,7 +49,7 @@ $app->post('/login', function (Request $request) use ($app) {
         $error = "The username or password was incorrect";
         return $app['twig']->render('/login.html', array('error' => $error, 'email' => $email));
     }
-    $app['session']->set('member', array('email' => $email));
+    $app['session']->set('auth', array('userid' => $member->getId()));
     return $app->redirect('/members');
 });
 $app->get('/logout', function () use ($app) {
