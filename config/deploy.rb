@@ -6,7 +6,7 @@ set :repo_url, 'git@github.com:LiffeyValleyAC/website.git'
 
 set :deploy_to, '/var/www/lvac'
 
-### set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/database.php}
 
 namespace :deploy do
 
