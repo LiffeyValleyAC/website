@@ -33,6 +33,6 @@ while(($data = fgetcsv($fp, 0, '|')) !== false) {
 }
 
 $db->exec("DROP TABLE IF EXISTS users");
-$db->exec("CREATE TABLE users (id INTEGER PRIMARY KEY ASC, email TEXT, password TEXT)");
+$db->exec("CREATE TABLE users (id INTEGER PRIMARY KEY ASC, email TEXT, password TEXT, nickname TEXT)");
 
-$db->exec("INSERT INTO users (email, password) VALUES ('fortest@test.fake', '$2y$10\$IYJpRpG3KrBOmmomSPQ9ieVTGQfkjU28iSBwRkZvOAmLXgioIjbxK')");
+$db->exec("INSERT INTO users (id, email, password, nickname) VALUES (1, 'fortest@test.fake', '$2y$10\$IYJpRpG3KrBOmmomSPQ9ieVTGQfkjU28iSBwRkZvOAmLXgioIjbxK', 'fortest')");

@@ -9,6 +9,10 @@ class WebTest extends WebTestCase
         $app['debug'] = true;
         $app['exception_handler']->disable();
         $app['session.test'] = true;
+        $app['db'] = new \PDO(
+            'sqlite:' . APP_ROOT . 'LVAC.sqlite'
+        );
+        $app['db']->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
         return $app;
     }

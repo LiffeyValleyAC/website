@@ -6,3 +6,4 @@ install:
   - composer self-update
   - composer update --prefer-dist
   - php seed/db_setup.php
+  - touch database.php

@@ -12,3 +12,4 @@ $app['db'] = new \PDO(
     '<username>',
     '<password>'
 );
+$app['db']->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);

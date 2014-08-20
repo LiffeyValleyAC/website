@@ -15,7 +15,6 @@ if (file_exists(APP_ROOT . 'database.php')) {
 } else {
     throw new RuntimeException("There is no database configuration");
 }
-$app['db']->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
 $app->register(
     new Silex\Provider\TwigServiceProvider(),
