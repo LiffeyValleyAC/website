@@ -12,10 +12,12 @@ class MembersControllerProvider implements ControllerProviderInterface
         $controllers = $app['controllers_factory'];
 
         $controllers->get('/', function (Application $app) {
-            if (null === $member = $app['session']->get('member')) {
+            if (null === $auth = $app['session']->get('auth')) {
                 return $app->redirect('/login');
             }
-            return $app['twig']->render('members/index.html');
+            $mapper = new \LVAC\MemberMapper($app['db']);
+            $member = $mapper->getMemberById($auth['userid']);
+            return $app['twig']->render('members/index.html', array('nickname' => $member->getNickname()));
         });
 
         return $controllers;
