@@ -27,15 +27,7 @@ namespace :deploy do
     end
   end
 
-  desc 'Create the sqlite database'
-  task :create_db do
-    on roles(:web) do
-      execute "cd /var/www/lvac/current && php seed/db_setup.php"
-    end
-  end
-
   after :finished, :composer
   after :composer, :restart_fpm
-  after :restart_fpm, :create_db
 
 end
