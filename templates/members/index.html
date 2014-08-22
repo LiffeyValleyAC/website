@@ -2,12 +2,16 @@
 
 {% block title %}Members - {% endblock %}
 {% block content %}
-<div class="bar">
-  &nbsp;
+<div class="row">
+  <div class="bar">
+    &nbsp;
+  </div>
 </div>
-<div id="content">
-  {% if nickname %}
-  Hi {{ nickname }}
-  {% endif %}
+<div class="row content">
+  <div class="col-md-8">
+    {% if nickname %}
+    Hi {{ nickname }}
+    {% endif %}
+  </div>
 </div>
 {% endblock %}

@@ -2,15 +2,19 @@
 
 {% block title %}News Archive - {% endblock %}
 {% block content %}
-<div class="bar">
-  &nbsp;
+<div class="row">
+  <div class="bar">
+    &nbsp;
+  </div>
 </div>
-<div id="content">
-  <hr>
-  {% for article in news %}
-  <div class="title"><a href="/news/{{ article.getSlug }}">{{ article.getTitle }}</a>
-    {{ article.getDate | date("l, F jS, Y") }}</div>
-  <hr>
-  {% endfor %}
+<div class="row content">
+  <div class="col-md-12">
+    <hr>
+    {% for article in news %}
+    <div class="title"><a href="/news/{{ article.getSlug }}">{{ article.getTitle }}</a>
+      {{ article.getDate | date("l, F jS, Y") }}</div>
+    <hr>
+    {% endfor %}
+  </div>
 </div>
 {% endblock %}
