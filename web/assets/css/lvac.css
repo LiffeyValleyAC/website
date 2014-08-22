@@ -86,7 +86,7 @@ h2, h3 {
   background-color: #333;
   color: #ddd;
 }
-#content {
+.content {
   padding: 10px;
   background-color: #181818;
   overflow: auto;
