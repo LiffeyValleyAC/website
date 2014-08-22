@@ -11,11 +11,17 @@ class NewsControllerProvider implements ControllerProviderInterface
         // creates a new controller based on the default route
         $controllers = $app['controllers_factory'];
 
-        $controllers->get('/', function (Application $app) {
+        $controllers->get('/{page}', function (Application $app, $page) {
             $mapper = new \LVAC\News\NewsMapper($app['db']);
-            $news = $mapper->getNews();
-            return $app['twig']->render('news/index.html', array('news' => $news));
-        });
+            $limit = 10;
+            $offset = ($page - 1) * $limit;
+            $news = $mapper->getNews($limit, $offset);
+            $older = $mapper->getPageOlderThan($page);
+            $newer = $mapper->getPageNewerThan($page);
+            return $app['twig']->render('news/index.html', array('news' => $news, 'older' => $older, 'newer' => $newer));
+        })
+        ->assert('page', '\d+')
+        ->value('page', 1);
 
         $controllers->get('/{slug}', function (Application $app, $slug) {
             $mapper = new \LVAC\News\NewsMapper($app['db']);

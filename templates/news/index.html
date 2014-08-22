@@ -15,6 +15,14 @@
       {{ article.getDate | date("l, F jS, Y") }}</div>
     <hr>
     {% endfor %}
+    <ul class="pager">
+      {% if older %}
+      <li class="previous"><a href="/news/{{ older }}">&larr; Older</a></li>
+      {% endif %}
+      {% if newer %}
+      <li class="next"><a href="/news/{{ newer }}">Newer &rarr;</a></li>
+      {% endif %}
+    </ul>
   </div>
 </div>
 {% endblock %}

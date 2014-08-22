@@ -54,6 +54,47 @@ class NewsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(5, count($result));
     }
 
+    public function testGetNewsCanOffsetByAnArbitraryNumber()
+    {
+        $news = new \LVAC\News\NewsMapper($this->db);
+        $result = $news->getNews(2);
+        $offset = $news->getNews(1, 1);
+
+        $this->assertEquals($result[1]->getTitle(), $offset[0]->getTitle());
+    }
+
+    public function testGetPageOlderThanReturnsFalseWhenThereIsNoPageOlder()
+    {
+        $news = new \LVAC\News\NewsMapper($this->db);
+        $result = $news->getPageOlderThan(5);
+
+        $this->assertFalse($result);
+    }
+
+    public function testGetPageOlderThanReturnsThePageNumberWhenThereAreOlderEntries()
+    {
+        $news = new \LVAC\News\NewsMapper($this->db);
+        $result = $news->getPageOlderThan(1);
+
+        $this->assertEquals(2, $result);
+    }
+
+    public function testGetPageNewerThanReturnsFalseWhenThereIsNoPageNewer()
+    {
+        $news = new \LVAC\News\NewsMapper($this->db);
+        $result = $news->getPageNewerThan(1);
+
+        $this->assertFalse($result);
+    }
+
+    public function testGetPageNewerThanReturnsThePageNumberWhenThereAreNewerEntries()
+    {
+        $news = new \LVAC\News\NewsMapper($this->db);
+        $result = $news->getPageNewerThan(5);
+
+        $this->assertEquals(4, $result);
+    }
+
     public function testNewsModelHasSpecificAttributes()
     {
         $this->assertClassHasAttribute('title', '\LVAC\News\News');

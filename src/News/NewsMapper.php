@@ -12,13 +12,14 @@ class NewsMapper {
         }
     }
 
-    public function getNews($limit = 10)
+    public function getNews($limit = 10, $offset = 0)
     {
         $sql = "
-            SELECT * FROM news ORDER BY date DESC LIMIT :limit
+            SELECT * FROM news ORDER BY date DESC LIMIT :limit OFFSET :offset
             ";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
         $stmt->execute();
         $rows = $stmt->fetchAll();
 
@@ -42,6 +43,29 @@ class NewsMapper {
         $result = $this->createNewsFromRow($row);
 
         return $result;
+    }
+
+    public function getPageOlderThan($page)
+    {
+        $sql = "
+            SELECT COUNT(*) AS count FROM news
+            ";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $row = $stmt->fetch();
+
+        if ($row['count'] > ($page * 10)) {
+            return $page + 1;
+        }
+        return false;
+    }
+
+    public function getPageNewerThan($page)
+    {
+        if ($page === 1) {
+            return false;
+        }
+        return $page - 1;
     }
 
     public function save(\LVAC\News\News $news)
