@@ -45,6 +45,29 @@ class NewsMapper {
         return $result;
     }
 
+    public function getPageOlderThan($page)
+    {
+        $sql = "
+            SELECT COUNT(*) AS count FROM news
+            ";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $row = $stmt->fetch();
+
+        if ($row['count'] > ($page * 10)) {
+            return $page + 1;
+        }
+        return false;
+    }
+
+    public function getPageNewerThan($page)
+    {
+        if ($page === 1) {
+            return false;
+        }
+        return $page - 1;
+    }
+
     public function save(\LVAC\News\News $news)
     {
         $sql = "
