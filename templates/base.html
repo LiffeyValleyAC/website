@@ -10,27 +10,34 @@
     <link href="/assets/css/lvac.css" rel="stylesheet">
   </head>
   <body>
-    <div id="container-fluid">
-      <div id="header">
-        <h1><a href="/"><span class="yellow">Liffey</span> Valley Athletics Club</a></h1>
-        <a href="/"><img src="/assets/images/new_logo.png" alt=""></a>
-      </div>
-      <div class="links">
-        <ul class="navlist">
-          <li><a href="/">Home</a></li>
-          <li><a href="/training">Training</a></li>
-          <li><a href="/news">News</a></li>
-          <li><a href="/fixtures">Fixtures</a></li>
-          <li><a href="/history">History</a></li>
-          <li><a href="#">Gallery</a></li>
-          <li><a href="/members">Members</a></li>
-        </ul>
+    <div class="container">
+      <div class="row">
+        <div id="header">
+          <h1 class="hidden-xs"><a href="/"><span class="yellow">Liffey</span> Valley Athletics Club</a></h1>
+          <h1 class="visible-xs-block"><a href="/"><span class="yellow">LVAC</span></a></h1>
+          <a href="/"><img src="/assets/images/new_logo.png" alt=""></a>
+        </div>
+        <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <ul class="nav navbar-nav">
+            <li><a href="/" class="yellow">Home</a></li>
+            <li><a href="/training">Training</a></li>
+            <li><a href="/news">News</a></li>
+            <li><a href="/fixtures">Fixtures</a></li>
+            <li><a href="/history">History</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="/members">Members</a></li>
+          </ul>
+        </div>
+        </nav>
       </div>
       {% block content %}
       {% endblock %}
-      <div id="footer">
-        <p>Liffey Valley Athletics Club, Sandpitts Cottage, Islandbridge, Dublin 8</p>
-        <p>Contact: Club Secretary, Mark Toher (087 9558320) or marktoherlvac@gmail.com</p>
+      <div class="row">
+        <div id="footer">
+          <p>Liffey Valley Athletics Club, Sandpitts Cottage, Islandbridge, Dublin 8</p>
+          <p>Contact: Club Secretary, Mark Toher (087 9558320) or marktoherlvac@gmail.com</p>
+        </div>
       </div>
     </div>
   </body>
