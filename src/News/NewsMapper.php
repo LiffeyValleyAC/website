@@ -12,13 +12,14 @@ class NewsMapper {
         }
     }
 
-    public function getNews($limit = 10)
+    public function getNews($limit = 10, $offset = 0)
     {
         $sql = "
-            SELECT * FROM news ORDER BY date DESC LIMIT :limit
+            SELECT * FROM news ORDER BY date DESC LIMIT :limit OFFSET :offset
             ";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
         $stmt->execute();
         $rows = $stmt->fetchAll();
 
