@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Members - {% endblock %}
+{% block title %}Profile - {% endblock %}
 {% block content %}
 <div class="row">
   <div class="bar">
@@ -14,9 +14,10 @@
     <a href="/members/training">My training</a><br />
   </div>
   <div class="col-md-8">
-    {% if nickname %}
-    Hi {{ nickname }}
-    {% endif %}
+    {{ email }}
+    {{ name }}
+    {{ nickname }}
   </div>
 </div>
 {% endblock %}
+
