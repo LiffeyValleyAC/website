@@ -20,6 +20,19 @@ class MembersControllerProvider implements ControllerProviderInterface
             return $app['twig']->render('members/index.html', array('nickname' => $member->getNickname()));
         });
 
+        $controllers->get('/profile', function (Application $app) {
+            if (null === $auth = $app['session']->get('auth')) {
+                return $app->redirect('/login');
+            }
+            $mapper = new \LVAC\MemberMapper($app['db']);
+            $member = $mapper->getMemberById($auth['userid']);
+            return $app['twig']->render('members/profile.html', array(
+                'email' => $member->getEmail(),
+                'name' => $member->getName(),
+                'nickname' => $member->getNickname()
+            ));
+        });
+
         return $controllers;
     }
 }

@@ -5,6 +5,7 @@ class Member
 {
     protected $id;
     protected $email;
+    protected $name;
     protected $nickname;
 
     public function setId($id)
@@ -27,6 +28,16 @@ class Member
     public function getEmail()
     {
         return $this->email;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function getName()
+    {
+        return $this->name;
     }
 
     public function setNickname($nickname)
