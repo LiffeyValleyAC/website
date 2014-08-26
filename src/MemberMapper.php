@@ -32,7 +32,7 @@ class MemberMapper
     public function getMemberById($id)
     {
         $sql = "
-            SELECT id, email, password, nickname FROM users WHERE id = :id LIMIT 1
+            SELECT id, email, name, nickname FROM users WHERE id = :id LIMIT 1
             ";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -42,11 +42,33 @@ class MemberMapper
         return $this->createUserFromRow($row);
     }
 
+    public function saveMember(\LVAC\Member $member)
+    {
+        $name = $member->getName();
+        $nickname = $member->getNickname();
+        $id = $member->getId();
+        $sql = "
+            UPDATE users SET name = :name, nickname = :nickname WHERE id = :id LIMIT 1
+            ";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':nickname', $nickname, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function createUserFromRow($row)
     {
         $member = new Member();
         $member->setId($row['id']);
         $member->setEmail($row['email']);
+        if (array_key_exists('name', $row)) {
+            $member->setName($row['name']);
+        }
         if (array_key_exists('nickname', $row)) {
             $member->setNickname($row['nickname']);
         }

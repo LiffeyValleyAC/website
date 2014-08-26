@@ -8,24 +8,27 @@
   </div>
 </div>
 <div class="row content">
+    {% if error is defined %}
+    <div class="alert alert-danger">Error: {{ error }}</div>
+    {% endif %}
   <div class="col-md-4">
     <a href="/logout">Log out</a><br />
     <a href="/members/profile">My profile</a><br />
     <a href="/members/training">My training</a><br />
   </div>
   <div class="col-md-8">
-    <form role="form">
+    <form role="form" method="post" action="/members/profile">
       <div class="form-group">
         <label for="email">Email address</label>
         <input type="test" class="form-control" id="email" placeholder="{{ email }}" disabled>
       </div>
       <div class="form-group">
         <label for="name">Name</label>
-        <input type="disabled" class="form-control" id="name" placeholder="{{ name }}">
+        <input type="disabled" class="form-control" name="name" id="name" placeholder="{{ name }}">
       </div>
       <div class="form-group">
         <label for="nickname">Nickname</label>
-        <input type="disabled" class="form-control" id="nickname" placeholder="{{ nickname }}">
+        <input type="disabled" class="form-control" name="nickname" id="nickname" placeholder="{{ nickname }}">
       </div>
       <button type="submit" class="btn btn-default">Submit</button>
     </form>
