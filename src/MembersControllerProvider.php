@@ -54,6 +54,13 @@ class MembersControllerProvider implements ControllerProviderInterface
             return $app->redirect('/members/profile');
         });
 
+        $controllers->get('/training', function (Application $app) {
+            if (null === $auth = $app['session']->get('auth')) {
+                return $app->redirect('/login');
+            }
+            return $app['twig']->render('members/training.html');
+        });
+
         return $controllers;
     }
 }
