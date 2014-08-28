@@ -1,19 +1,5 @@
-{% extends 'base.html' %}
+{% extends 'members/base.html' %}
 
 {% block title %}My Training - {% endblock %}
-{% block content %}
-<div class="row">
-  <div class="bar">
-    &nbsp;
-  </div>
-</div>
-<div class="row content">
-  <div class="col-md-3">
-    <a href="/logout">Log out</a><br />
-    <a href="/members/profile">My profile</a><br />
-    <a href="/members/training">My training</a><br />
-  </div>
-  <div class="col-md-9">
-  </div>
-</div>
+{% block member_content %}
 {% endblock %}

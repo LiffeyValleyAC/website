@@ -1,22 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'members/base.html' %}
 
-{% block title %}Members - {% endblock %}
-{% block content %}
-<div class="row">
-  <div class="bar">
-    &nbsp;
-  </div>
-</div>
-<div class="row content">
-  <div class="col-md-4">
-    <a href="/logout">Log out</a><br />
-    <a href="/members/profile">My profile</a><br />
-    <a href="/members/training">My training</a><br />
-  </div>
-  <div class="col-md-8">
+{% block member_content %}
     {% if nickname %}
     Hi {{ nickname }}
     {% endif %}
-  </div>
-</div>
 {% endblock %}

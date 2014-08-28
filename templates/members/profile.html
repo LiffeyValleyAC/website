@@ -1,22 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'members/base.html' %}
 
 {% block title %}Profile - {% endblock %}
-{% block content %}
-<div class="row">
-  <div class="bar">
-    &nbsp;
-  </div>
-</div>
-<div class="row content">
-    {% if error is defined %}
-    <div class="alert alert-danger">Error: {{ error }}</div>
-    {% endif %}
-  <div class="col-md-3">
-    <a href="/logout">Log out</a><br />
-    <a href="/members/profile">My profile</a><br />
-    <a href="/members/training">My training</a><br />
-  </div>
-  <div class="col-md-9">
+{% block member_content %}
     <form role="form" method="post" action="/members/profile">
       <div class="form-group">
         <label for="email">Email address</label>
@@ -32,7 +17,5 @@
       </div>
       <button type="submit" class="btn btn-default">Submit</button>
     </form>
-  </div>
-</div>
 {% endblock %}
 
