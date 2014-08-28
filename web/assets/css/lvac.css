@@ -59,19 +59,6 @@ h2, h3 {
   background-color: #181818;
   overflow: auto;
 }
-#main {
-  width: 620px;
-  float: left;
-}
-#sidebar {
-  width: 310px;
-  float: right;
-}
-.twocol, .onecol {
-  width: 290px;
-  float: left;
-  padding: 0 10px;
-}
 .join .head {
   font-size: 200%;
   margin: 0;

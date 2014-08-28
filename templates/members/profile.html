@@ -11,12 +11,12 @@
     {% if error is defined %}
     <div class="alert alert-danger">Error: {{ error }}</div>
     {% endif %}
-  <div class="col-md-4">
+  <div class="col-md-3">
     <a href="/logout">Log out</a><br />
     <a href="/members/profile">My profile</a><br />
     <a href="/members/training">My training</a><br />
   </div>
-  <div class="col-md-8">
+  <div class="col-md-9">
     <form role="form" method="post" action="/members/profile">
       <div class="form-group">
         <label for="email">Email address</label>
