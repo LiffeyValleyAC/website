@@ -7,26 +7,27 @@ use Symfony\Component\HttpFoundation\Request;
 
 class MembersControllerProvider implements ControllerProviderInterface
 {
+    protected $auth;
+
     public function connect(Application $app)
     {
         // creates a new controller based on the default route
         $controllers = $app['controllers_factory'];
-
-        $controllers->get('/', function (Application $app) {
-            if (null === $auth = $app['session']->get('auth')) {
+        $controllers->before(function (Request $request) use ($app) {
+            if (null === $this->auth = $app['session']->get('auth')) {
                 return $app->redirect('/login');
             }
+        });
+
+        $controllers->get('/', function (Application $app) {
             $mapper = new \LVAC\MemberMapper($app['db']);
-            $member = $mapper->getMemberById($auth['userid']);
+            $member = $mapper->getMemberById($this->auth['userid']);
             return $app['twig']->render('members/index.html', array('nickname' => $member->getNickname()));
         });
 
         $controllers->get('/profile', function (Application $app) {
-            if (null === $auth = $app['session']->get('auth')) {
-                return $app->redirect('/login');
-            }
             $mapper = new \LVAC\MemberMapper($app['db']);
-            $member = $mapper->getMemberById($auth['userid']);
+            $member = $mapper->getMemberById($this->auth['userid']);
             return $app['twig']->render('members/profile.html', array(
                 'email' => $member->getEmail(),
                 'name' => $member->getName(),
@@ -35,14 +36,11 @@ class MembersControllerProvider implements ControllerProviderInterface
         });
 
         $controllers->post('/profile', function (Request $request) use ($app) {
-            if (null === $auth = $app['session']->get('auth')) {
-                return $app->redirect('/login');
-            }
             $name = $request->get('name');
             $nickname = $request->get('nickname');
 
             $member = new \LVAC\Member();
-            $member->setId($auth['userid']);
+            $member->setId($this->auth['userid']);
             $member->setName($name);
             $member->setNickname($nickname);
 
@@ -55,9 +53,6 @@ class MembersControllerProvider implements ControllerProviderInterface
         });
 
         $controllers->get('/training', function (Application $app) {
-            if (null === $auth = $app['session']->get('auth')) {
-                return $app->redirect('/login');
-            }
             return $app['twig']->render('members/training.html');
         });
 
