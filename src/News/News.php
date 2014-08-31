@@ -35,7 +35,7 @@ class News {
         if ($date === null) {
             $date = c::now();
         }
-        $this->date = $date;
+        $this->date = c::createFromFormat('Y-m-d H:i:s', $date);
     }
 
     public function getDate()
@@ -58,7 +58,7 @@ class News {
 
     public function createSlug($title, $date)
     {
-        $date = date('Ymd', strtotime($date));
+        $date = $date->format('Ymd');
         $title = strtolower($title);
         $title = preg_replace('/[^a-z ]/', '', $title);
         $title = preg_replace('/ /', '-', $title);

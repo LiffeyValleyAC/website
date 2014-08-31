@@ -151,7 +151,7 @@ class NewsTest extends \PHPUnit_Framework_TestCase
     public function testSlugGetsCreated()
     {
         $news = new \LVAC\News\News();
-        $result = $news->createSlug('This is a title', '2013-12-22 12:00:00');
+        $result = $news->createSlug('This is a title', c::createFromDate(2013, 12, 22, 'Europe/Dublin'));
 
         $this->assertEquals('20131222-this-is-a-title', $result);
     }
