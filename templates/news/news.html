@@ -2,15 +2,19 @@
 
 {% block title %}{{ news.getTitle }} - {% endblock %}
 {% block content %}
-<div class="bar">
-  &nbsp;
+<div class="row">
+  <div class="bar">
+    &nbsp;
+  </div>
 </div>
-<div id="content">
-  <hr>
-  <div class="title"><div class="larger">{{ news.getTitle }}</div>
-    {{ news.getDate | date("l, F jS, Y") }}</div>
-  <p>{{ news.location }}</p>
-  {{ news.body|raw }}
-  <hr>
+<div class="row content">
+  <div class="col-md-12">
+    <hr>
+    <div class="title"><div class="larger">{{ news.getTitle }}</div>
+      {{ news.getDate | date("l, F jS, Y") }}</div>
+    <p>{{ news.location }}</p>
+    {{ news.body|raw }}
+    <hr>
+  </div>
 </div>
 {% endblock %}
