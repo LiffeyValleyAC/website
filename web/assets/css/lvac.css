@@ -129,6 +129,12 @@ hr {
   border-color: #888;
   width: 80%;
 }
+#map {
+  height: 400px;
+}
+.leaflet-popup-content {
+  color: #333;
+}
 #footer {
   font-size: 80%;
   line-height: 1.6;
