@@ -26,7 +26,7 @@ $app->register(
 $app->register(new Silex\Provider\SessionServiceProvider());
 
 $app->mount('/', new LVAC\BaseControllerProvider());
-$app->mount('/news', new LVAC\NewsControllerProvider());
+$app->mount('/news', new LVAC\News\ControllerProvider());
 $app->mount('/races', new LVAC\Race\ControllerProvider());
 $app->mount('/members', new LVAC\Member\ControllerProvider());
 

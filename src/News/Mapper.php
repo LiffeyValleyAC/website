@@ -2,7 +2,7 @@
 namespace LVAC\News;
 use \PDO;
 
-class NewsMapper {
+class Mapper {
     protected $conn;
 
     public function __construct($conn = null)
