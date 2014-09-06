@@ -12,8 +12,8 @@
     <hr>
     <div class="title"><div class="larger">{{ news.getTitle }}</div>
       {{ news.getDate | date("l, F jS, Y") }}</div>
-    <p>{{ news.location }}</p>
-    {{ news.body|raw }}
+    <p>{{ news.getLocation }}</p>
+    {{ news.getBody|raw }}
     <hr>
   </div>
 </div>
