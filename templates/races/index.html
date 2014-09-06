@@ -9,9 +9,18 @@
 </div>
 <div class="row content">
   <div class="col-md-6">
+    <h2>Previous Races</h2>
     <hr>
     {% for result in results %}
-    <div class="title">{{ result.getTitle }}
+    <div class="title">{{ result.getTitle }}</div>
+    <hr>
+    {% endfor %}
+  </div>
+  <div class="col-md-6">
+    <h2>Upcoming Races</h2>
+    <hr>
+    {% for race in races %}
+    <div class="title">{{ race.getTitle }}</div>
     <hr>
     {% endfor %}
   </div>

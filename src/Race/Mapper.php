@@ -15,7 +15,26 @@ class Mapper {
     public function getResults($limit = 10, $offset = 0)
     {
         $sql = "
-            SELECT * FROM races ORDER BY date DESC LIMIT :limit OFFSET :offset
+            SELECT * FROM races WHERE date < NOW() ORDER BY date DESC LIMIT :limit OFFSET :offset
+            ";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        $rows = $stmt->fetchAll();
+
+        $result = array();
+        foreach ($rows as $row) {
+            $result[] = $this->createRaceFromRow($row);
+        }
+
+        return $result;
+    }
+
+    public function getFutureRaces($limit = 10, $offset = 0)
+    {
+        $sql = "
+            SELECT * FROM races WHERE date >= NOW() ORDER BY date DESC LIMIT :limit OFFSET :offset
             ";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
