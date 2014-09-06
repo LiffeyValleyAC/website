@@ -23,7 +23,7 @@ class NewsTest extends \PHPUnit_Framework_TestCase
             )";
         $this->db->exec($sql);
 
-        $news_mapper = new \LVAC\News\NewsMapper($this->db);
+        $news_mapper = new \LVAC\News\Mapper($this->db);
         $faker = \Faker\Factory::create();
 
         for ($i = 0; $i < 20; $i++) {
@@ -40,7 +40,7 @@ class NewsTest extends \PHPUnit_Framework_TestCase
 
     public function testGetNewsReturnsTenNewsItemsByDefault()
     {
-        $news = new \LVAC\News\NewsMapper($this->db);
+        $news = new \LVAC\News\Mapper($this->db);
         $result = $news->getNews();
 
         $this->assertEquals(10, count($result));
@@ -48,7 +48,7 @@ class NewsTest extends \PHPUnit_Framework_TestCase
 
     public function testGetNewsReturnsFiveNewsItemsIfAsked()
     {
-        $news = new \LVAC\News\NewsMapper($this->db);
+        $news = new \LVAC\News\Mapper($this->db);
         $result = $news->getNews(5);
 
         $this->assertEquals(5, count($result));
@@ -56,7 +56,7 @@ class NewsTest extends \PHPUnit_Framework_TestCase
 
     public function testGetNewsCanOffsetByAnArbitraryNumber()
     {
-        $news = new \LVAC\News\NewsMapper($this->db);
+        $news = new \LVAC\News\Mapper($this->db);
         $result = $news->getNews(2);
         $offset = $news->getNews(1, 1);
 
@@ -65,7 +65,7 @@ class NewsTest extends \PHPUnit_Framework_TestCase
 
     public function testGetPageOlderThanReturnsFalseWhenThereIsNoPageOlder()
     {
-        $news = new \LVAC\News\NewsMapper($this->db);
+        $news = new \LVAC\News\Mapper($this->db);
         $result = $news->getPageOlderThan(5);
 
         $this->assertFalse($result);
@@ -73,7 +73,7 @@ class NewsTest extends \PHPUnit_Framework_TestCase
 
     public function testGetPageOlderThanReturnsThePageNumberWhenThereAreOlderEntries()
     {
-        $news = new \LVAC\News\NewsMapper($this->db);
+        $news = new \LVAC\News\Mapper($this->db);
         $result = $news->getPageOlderThan(1);
 
         $this->assertEquals(2, $result);
@@ -81,7 +81,7 @@ class NewsTest extends \PHPUnit_Framework_TestCase
 
     public function testGetPageNewerThanReturnsFalseWhenThereIsNoPageNewer()
     {
-        $news = new \LVAC\News\NewsMapper($this->db);
+        $news = new \LVAC\News\Mapper($this->db);
         $result = $news->getPageNewerThan(1);
 
         $this->assertFalse($result);
@@ -89,7 +89,7 @@ class NewsTest extends \PHPUnit_Framework_TestCase
 
     public function testGetPageNewerThanReturnsThePageNumberWhenThereAreNewerEntries()
     {
-        $news = new \LVAC\News\NewsMapper($this->db);
+        $news = new \LVAC\News\Mapper($this->db);
         $result = $news->getPageNewerThan(5);
 
         $this->assertEquals(4, $result);
@@ -114,7 +114,7 @@ class NewsTest extends \PHPUnit_Framework_TestCase
 
         $news_model = new \LVAC\News\News();
 
-        $news = new \LVAC\News\NewsMapper($mock_db);
+        $news = new \LVAC\News\Mapper($mock_db);
         $saved_news = $news->save($news_model);
 
         $this->assertNotEquals(false, $saved_news);
@@ -130,7 +130,7 @@ class NewsTest extends \PHPUnit_Framework_TestCase
 
         $news_model = new \LVAC\News\News();
 
-        $news = new \LVAC\News\NewsMapper($mock_db);
+        $news = new \LVAC\News\Mapper($mock_db);
         $saved_news = $news->save($news_model);
 
         $this->assertFalse($saved_news);
@@ -159,7 +159,7 @@ class NewsTest extends \PHPUnit_Framework_TestCase
     public function testGetNewsBySlug()
     {
         $faker = \Faker\Factory::create();
-        $mapper = new \LVAC\News\NewsMapper($this->db);
+        $mapper = new \LVAC\News\Mapper($this->db);
 
         $expected = new \LVAC\News\News();
         $expected->setTitle('My lovely horse');
