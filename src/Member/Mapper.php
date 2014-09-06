@@ -1,8 +1,8 @@
 <?php
-namespace LVAC;
+namespace LVAC\Member;
 use \PDO;
 
-class MemberMapper
+class Mapper
 {
     protected $conn;
 
@@ -42,7 +42,7 @@ class MemberMapper
         return $this->createUserFromRow($row);
     }
 
-    public function saveMember(\LVAC\Member $member)
+    public function saveMember(\LVAC\Member\Member $member)
     {
         $name = $member->getName();
         $nickname = $member->getNickname();

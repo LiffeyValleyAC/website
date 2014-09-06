@@ -28,7 +28,7 @@ $app->register(new Silex\Provider\SessionServiceProvider());
 $app->mount('/', new LVAC\BaseControllerProvider());
 $app->mount('/news', new LVAC\NewsControllerProvider());
 $app->mount('/races', new LVAC\Race\ControllerProvider());
-$app->mount('/members', new LVAC\MembersControllerProvider());
+$app->mount('/members', new LVAC\Member\ControllerProvider());
 
 $app->get('/login', function () use ($app) {
     return $app['twig']->render('/login.html');
@@ -43,7 +43,7 @@ $app->post('/login', function (Request $request) use ($app) {
     $email = $request->get('email');
     $password = $request->get('password');
 
-    $member_mapper = new \LVAC\MemberMapper($app['db']);
+    $member_mapper = new \LVAC\Member\Mapper($app['db']);
     if (false === $member = $member_mapper->checkLogin($email, $password)) {
         // throw some errors
         $error = "The username or password was incorrect";

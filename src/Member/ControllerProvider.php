@@ -1,11 +1,11 @@
 <?php
-namespace LVAC;
+namespace LVAC\Member;
 
 use Silex\Application;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-class MembersControllerProvider implements ControllerProviderInterface
+class ControllerProvider implements ControllerProviderInterface
 {
     protected $auth;
 
@@ -20,13 +20,13 @@ class MembersControllerProvider implements ControllerProviderInterface
         });
 
         $controllers->get('/', function (Application $app) {
-            $mapper = new \LVAC\MemberMapper($app['db']);
+            $mapper = new \LVAC\Member\Mapper($app['db']);
             $member = $mapper->getMemberById($this->auth['userid']);
             return $app['twig']->render('members/index.html', array('nickname' => $member->getNickname()));
         });
 
         $controllers->get('/profile', function (Application $app) {
-            $mapper = new \LVAC\MemberMapper($app['db']);
+            $mapper = new \LVAC\Member\Mapper($app['db']);
             $member = $mapper->getMemberById($this->auth['userid']);
             return $app['twig']->render('members/profile.html', array(
                 'email' => $member->getEmail(),
@@ -39,12 +39,12 @@ class MembersControllerProvider implements ControllerProviderInterface
             $name = $request->get('name');
             $nickname = $request->get('nickname');
 
-            $member = new \LVAC\Member();
+            $member = new \LVAC\Member\Member();
             $member->setId($this->auth['userid']);
             $member->setName($name);
             $member->setNickname($nickname);
 
-            $mapper = new \LVAC\MemberMapper($app['db']);
+            $mapper = new \LVAC\Member\Mapper($app['db']);
             if (false === $mapper->saveMember($member)) {
                 $error = "There was a problem saving your details";
                 return $app['twig']->render('/profile.html', array('error' => $error));
@@ -53,7 +53,10 @@ class MembersControllerProvider implements ControllerProviderInterface
         });
 
         $controllers->get('/training', function (Application $app) {
-            return $app['twig']->render('members/training.html');
+            $mapper = new \LVAC\TrainingMapper($app['db']);
+            $logs = $mapper->getTrainingById($this->auth['userid']);
+
+            return $app['twig']->render('members/training.html', array('logs' => $logs));
         });
 
         return $controllers;
