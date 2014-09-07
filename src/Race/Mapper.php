@@ -50,10 +50,27 @@ class Mapper {
         return $result;
     }
 
+    public function getRaceBySlug($slug)
+    {
+        $sql = "
+            SELECT * FROM races WHERE slug = ?
+            ";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(array($slug));
+        $row = $stmt->fetch();
+
+        $result = $this->createRaceFromRow($row);
+
+        return $result;
+    }
+
     public function createRaceFromRow($row)
     {
         $race = new Race();
         $race->setTitle($row['title']);
+        $race->setSlug($row['slug']);
+        $race->setLatitude($row['latitude']);
+        $race->setLongitude($row['longitude']);
         return $race;
     }
 }

@@ -20,7 +20,9 @@
     <h2>Upcoming Races</h2>
     <hr>
     {% for race in races %}
-    <div class="title">{{ race.getTitle }}</div>
+    <div class="title">
+      <a href="/races/{{ race.getSlug }}">{{ race.getTitle }}</a>
+    </div>
     <hr>
     {% endfor %}
   </div>
