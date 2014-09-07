@@ -7,6 +7,7 @@ class Race extends \LVAC\Model
     protected $title;
     protected $date;
     protected $slug;
+    protected $description;
     protected $latitude;
     protected $longitude;
 }

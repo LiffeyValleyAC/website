@@ -70,6 +70,7 @@ class Mapper {
         $race->setTitle($row['title']);
         $race->setSlug($row['slug']);
         $race->setDate($row['date']);
+        $race->setDescription($row['description']);
         $race->setLatitude($row['latitude']);
         $race->setLongitude($row['longitude']);
         return $race;

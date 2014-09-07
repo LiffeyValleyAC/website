@@ -9,13 +9,13 @@
 </div>
 <div class="row content">
   <div class="col-md-8">
-    <hr>
     <div class="title">
       <div class="larger">
         {{ race.getTitle }}
       </div>
+      {{ race.getDate | date("l, F jS, Y \\a\\t g:ia") }}
     </div>
-    <hr>
+    <p>{{ race.getDescription }}</p>
   </div>
   <div class="col-md-4">
     <div id="map"></div>
