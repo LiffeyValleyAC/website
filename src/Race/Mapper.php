@@ -69,6 +69,7 @@ class Mapper {
         $race = new Race();
         $race->setTitle($row['title']);
         $race->setSlug($row['slug']);
+        $race->setDate($row['date']);
         $race->setLatitude($row['latitude']);
         $race->setLongitude($row['longitude']);
         return $race;
