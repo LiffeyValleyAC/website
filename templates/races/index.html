@@ -25,7 +25,10 @@
     <h2>Previous Races</h2>
     {% if results %}
     {% for result in results %}
-    <div class="title">{{ result.getTitle }}</div>
+    <div class="title">
+      <a href="/races/{{ result.getSlug }}">{{ result.getTitle }}</a>
+      {{ result.getDate | date("l, F jS, Y \\a\\t g:ia") }}
+    </div>
     {% endfor %}
     {% else %}
     <p>There are no race results</p>

@@ -3,6 +3,7 @@ namespace LVAC\Race;
 
 use Silex\Application;
 use Silex\ControllerProviderInterface;
+use \Carbon\Carbon as c;
 
 class ControllerProvider implements ControllerProviderInterface
 {
@@ -20,6 +21,10 @@ class ControllerProvider implements ControllerProviderInterface
         $controllers->get('/{slug}', function (Application $app, $slug) {
             $mapper = new \LVAC\Race\Mapper($app['db']);
             $race = $mapper->getRaceBySlug($slug);
+
+            if ($race->getDate() < c::today()) {
+                return $app['twig']->render('races/result.html', array('race' => $race));
+            }
             return $app['twig']->render('races/race.html', array('race' => $race));
         });
 

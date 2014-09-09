@@ -71,6 +71,7 @@ class Mapper {
         $race->setSlug($row['slug']);
         $race->setDate($row['date']);
         $race->setDescription($row['description']);
+        $race->setReport($row['report']);
         $race->setLatitude($row['latitude']);
         $race->setLongitude($row['longitude']);
         return $race;

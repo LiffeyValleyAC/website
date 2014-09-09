@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Results - {% endblock %}
+{% block content %}
+<div class="row">
+  <div class="bar">
+    &nbsp;
+  </div>
+</div>
+<div class="row content">
+  <div class="col-md-8">
+    <div class="title">
+      <div class="larger">
+        {{ race.getTitle }}
+      </div>
+      {{ race.getDate | date("l, F jS, Y \\a\\t g:ia") }}
+    </div>
+    <p>{{ race.getReport }}</p>
+  </div>
+  <div class="col-md-4">
+    <div id="map"></div>
+  </div>
+</div>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script>
+  var map = L.map('map').setView([{{ race.getLatitude }}, {{ race.getLongitude }}], 14);
+  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(map);
+  L.marker([{{ race.getLatitude }}, {{ race.getLongitude }}]).addTo(map)
+  .bindPopup('{{ race.getTitle }}')
+  .openPopup();
+</script>
+{% endblock %}
