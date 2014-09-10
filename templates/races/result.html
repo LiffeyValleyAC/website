@@ -23,7 +23,7 @@
       <tr>
         <td>{{ result.getPlace }}</td>
         <td>{{ result.getName }}</td>
-        <td>{{ result.getDuration | date("%im%ss") }}</td>
+        <td>{{ result.getDuration | date("%im %ss") }}</td>
       </tr>
       {% endfor %}
     </table>
