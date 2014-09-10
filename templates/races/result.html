@@ -10,12 +10,23 @@
 <div class="row content">
   <div class="col-md-8">
     <div class="title">
-      <div class="larger">
+      <h3>
         {{ race.getTitle }}
-      </div>
-      {{ race.getDate | date("l, F jS, Y \\a\\t g:ia") }}
+        <small>{{ race.getDate | date("l, F jS, Y \\a\\t g:ia") }}</small>
+      </h3>
     </div>
     <p>{{ race.getReport }}</p>
+    {% if results %}
+    <h3>Results</h3>
+    <table class="table">
+      {% for result in results %}
+      <tr>
+        <td>{{ result.getName }}</td>
+        <td>{{ result.getDuration | date("%im%ss") }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
   </div>
   <div class="col-md-4">
     <div id="map"></div>

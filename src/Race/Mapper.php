@@ -67,6 +67,7 @@ class Mapper {
     public function createRaceFromRow($row)
     {
         $race = new Race();
+        $race->setId($row['id']);
         $race->setTitle($row['title']);
         $race->setSlug($row['slug']);
         $race->setDate($row['date']);

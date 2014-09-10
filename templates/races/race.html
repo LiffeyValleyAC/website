@@ -10,10 +10,10 @@
 <div class="row content">
   <div class="col-md-8">
     <div class="title">
-      <div class="larger">
+      <h3>
         {{ race.getTitle }}
-      </div>
-      {{ race.getDate | date("l, F jS, Y \\a\\t g:ia") }}
+        <small>{{ race.getDate | date("l, F jS, Y \\a\\t g:ia") }}</small>
+      </h3>
     </div>
     <p>{{ race.getDescription }}</p>
   </div>

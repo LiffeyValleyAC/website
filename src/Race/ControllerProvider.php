@@ -23,7 +23,9 @@ class ControllerProvider implements ControllerProviderInterface
             $race = $mapper->getRaceBySlug($slug);
 
             if ($race->getDate() < c::today()) {
-                return $app['twig']->render('races/result.html', array('race' => $race));
+                $mapper = new \LVAC\Result\Mapper($app['db']);
+                $results = $mapper->getResultsOfRace($race->getId());
+                return $app['twig']->render('races/result.html', array('race' => $race, 'results' => $results));
             }
             return $app['twig']->render('races/race.html', array('race' => $race));
         });
