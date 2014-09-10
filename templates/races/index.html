@@ -12,10 +12,10 @@
     <h2>Upcoming Races</h2>
     {% if races %}
     {% for race in races %}
-    <div class="title">
+    <h4>
       <a href="/races/{{ race.getSlug }}">{{ race.getTitle }}</a>
-      {{ race.getDate | date("l, F jS, Y \\a\\t g:ia") }}
-    </div>
+      <small>{{ race.getDate | date("l, F jS, Y \\a\\t g:ia") }}</small>
+    </h4>
     {% endfor %}
     {% else %}
     <p>There are no races coming up</p>
@@ -25,10 +25,10 @@
     <h2>Previous Races</h2>
     {% if results %}
     {% for result in results %}
-    <div class="title">
+    <h4>
       <a href="/races/{{ result.getSlug }}">{{ result.getTitle }}</a>
-      {{ result.getDate | date("l, F jS, Y \\a\\t g:ia") }}
-    </div>
+      <small>{{ result.getDate | date("l, F jS, Y \\a\\t g:ia") }}</small>
+    </h4>
     {% endfor %}
     {% else %}
     <p>There are no race results</p>

@@ -11,8 +11,9 @@
   <div class="col-md-12">
     <hr>
     {% for article in news %}
-    <div class="title"><a href="/news/{{ article.getSlug }}">{{ article.getTitle }}</a>
-      {{ article.getDate | date("l, F jS, Y") }}</div>
+    <h3><a href="/news/{{ article.getSlug }}">{{ article.getTitle }}</a>
+      <small>{{ article.getDate | date("l, F jS, Y") }}</small>
+    </h3>
     <hr>
     {% endfor %}
     <ul class="pager">
