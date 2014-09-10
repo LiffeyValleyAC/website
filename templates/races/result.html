@@ -18,9 +18,10 @@
     <p>{{ race.getReport }}</p>
     {% if results %}
     <h3>Results</h3>
-    <table class="table">
+    <table class="table table-striped">
       {% for result in results %}
       <tr>
+        <td>{{ result.getPlace }}</td>
         <td>{{ result.getName }}</td>
         <td>{{ result.getDuration | date("%im%ss") }}</td>
       </tr>
