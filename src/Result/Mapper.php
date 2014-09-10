@@ -15,7 +15,7 @@ class Mapper {
     public function getResultsOfRace($raceid)
     {
         $sql = "
-            SELECT * FROM results WHERE race_id = :raceid
+            SELECT * FROM results WHERE race_id = :raceid ORDER BY place
             ";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':raceid', $raceid);
@@ -35,6 +35,7 @@ class Mapper {
         $result = new Result();
         $result->setName($row['name']);
         $result->setDuration($row['duration']);
+        $result->setPlace($row['place']);
         return $result;
     }
 }
