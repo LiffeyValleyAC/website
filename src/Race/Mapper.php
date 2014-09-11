@@ -73,8 +73,7 @@ class Mapper {
         $race->setDate($row['date']);
         $race->setDescription($row['description']);
         $race->setReport($row['report']);
-        $race->setLatitude($row['latitude']);
-        $race->setLongitude($row['longitude']);
+        $race->setMap($row['latitude'], $row['longitude']);
         return $race;
     }
 }

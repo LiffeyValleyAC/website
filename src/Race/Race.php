@@ -11,4 +11,21 @@ class Race extends \LVAC\Model
     protected $report;
     protected $latitude;
     protected $longitude;
+
+    public function setMap($latitude, $longitude)
+    {
+        $this->latitude = $latitude;
+        $this->longitude = $longitude;
+    }
+
+    public function getMap()
+    {
+        if (isset($this->latitude) && isset($this->longitude)) {
+            return array(
+                'latitude' => $this->latitude,
+                'longitude' => $this->longitude
+            );
+        }
+        return false;
+    }
 }

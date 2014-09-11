@@ -30,17 +30,21 @@
     {% endif %}
   </div>
   <div class="col-md-4">
+    {% if race.getMap %}
     <div id="map"></div>
+    {% endif %}
   </div>
 </div>
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+{% if race.getMap %}
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 <script>
-  var map = L.map('map').setView([{{ race.getLatitude }}, {{ race.getLongitude }}], 14);
+  var map = L.map('map').setView([{{ race.getMap.latitude }}, {{ race.getMap.longitude }}], 14);
   L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
   }).addTo(map);
-  L.marker([{{ race.getLatitude }}, {{ race.getLongitude }}]).addTo(map)
+  L.marker([{{ race.getMap.latitude }}, {{ race.getMap.longitude }}]).addTo(map)
   .bindPopup('{{ race.getTitle }}')
   .openPopup();
 </script>
+{% endif %}
 {% endblock %}
