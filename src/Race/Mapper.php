@@ -34,7 +34,7 @@ class Mapper {
     public function getFutureRaces($limit = 10, $offset = 0)
     {
         $sql = "
-            SELECT * FROM races WHERE date >= NOW() ORDER BY date DESC LIMIT :limit OFFSET :offset
+            SELECT * FROM races WHERE date >= NOW() ORDER BY date LIMIT :limit OFFSET :offset
             ";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
