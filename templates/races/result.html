@@ -19,6 +19,9 @@
     {% if results %}
     <h3>Results</h3>
     <table class="table table-striped">
+      <thead>
+      <tr><th>&nbsp;</th><th>&nbsp;</th><th>Finish</th><th>Handicap</th></tr>
+      </thead>
       {% for result in results %}
       <tr>
         <td>{{ result.getPlace }}</td>
