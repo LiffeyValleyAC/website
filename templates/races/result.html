@@ -24,6 +24,13 @@
         <td>{{ result.getPlace }}</td>
         <td>{{ result.getName }}</td>
         <td>{{ result.getDuration | date("%im %ss") }}</td>
+        <td>
+          {% if result.getHandicap == 'guest' %}
+          Guest
+          {% else %}
+          {{ result.getHandicap | date("%im %ss") }}
+          {% endif %}
+        </td>
       </tr>
       {% endfor %}
     </table>

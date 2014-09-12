@@ -35,6 +35,7 @@ class Mapper {
         $result = new Result();
         $result->setName($row['name']);
         $result->setDuration($row['duration']);
+        $result->setHandicap($row['handicap']);
         $result->setPlace($row['place']);
         return $result;
     }
