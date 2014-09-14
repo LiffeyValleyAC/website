@@ -20,19 +20,22 @@
     <h3>Results</h3>
     <table class="table table-striped">
       <thead>
-      <tr><th>&nbsp;</th><th>&nbsp;</th><th>Finish</th><th>Handicap</th></tr>
+        <tr><th>&nbsp;</th><th>&nbsp;</th><th>Finish</th><th>Handicap</th><th>Nett Time</th></tr>
       </thead>
       {% for result in results %}
       <tr>
         <td>{{ result.getPlace }}</td>
         <td>{{ result.getName }}</td>
-        <td>{{ result.getDuration | date("%im %ss") }}</td>
+        <td>{{ result.getDuration | date("%im %Ss") }}</td>
         <td>
           {% if result.getHandicap == 'guest' %}
           Guest
           {% else %}
-          {{ result.getHandicap | date("%im %ss") }}
+          {{ result.getHandicap | date("%im %Ss") }}
           {% endif %}
+        </td>
+        <td>
+          {{ result.getNett }}
         </td>
       </tr>
       {% endfor %}
