@@ -79,6 +79,27 @@ class Mapper {
         return $ordered;
     }
 
+    public function save(\LVAC\Race\Race $race)
+    {
+        $sql = "
+            INSERT INTO races (title, date, description, slug, latitude, longitude) VALUES (?, ?, ?, ?, ?, ?)
+            ";
+        $stmt = $this->conn->prepare($sql);
+        $binds = array(
+            $race->getTitle(),
+            $race->getDate(),
+            $race->getDescription(),
+            $race->getSlug(),
+            $race->getLatitude(),
+            $race->getLongitude()
+        );
+        if ($stmt->execute($binds)) {
+            return $race;
+        }
+
+        return false;
+    }
+
     public function createRaceFromRow($row)
     {
         $race = new Race();
