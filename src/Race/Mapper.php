@@ -64,6 +64,16 @@ class Mapper {
         return $result;
     }
 
+    public function groupByYear($races)
+    {
+        $ordered = array();
+        foreach ($races as $race) {
+            $year = strftime("%Y", strtotime($race->getDate()));
+            $ordered[$year][] = $race;
+        }
+        return $ordered;
+    }
+
     public function createRaceFromRow($row)
     {
         $race = new Race();

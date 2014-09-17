@@ -24,11 +24,14 @@
   <div class="col-md-6">
     <h2>Previous Races</h2>
     {% if results %}
-    {% for result in results %}
+    {% for year,entries in results %}
+    <h4>{{ year }}</h4>
+    {% for result in entries %}
     <h4>
       <a href="/races/{{ result.getSlug }}">{{ result.getTitle }}</a>
       <small>{{ result.getDate | date("l, F jS, Y \\a\\t g:ia") }}</small>
     </h4>
+    {% endfor %}
     {% endfor %}
     {% else %}
     <p>There are no race results</p>
