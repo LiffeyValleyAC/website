@@ -13,9 +13,9 @@ class ControllerProvider implements ControllerProviderInterface
 
         $controllers->get('/', function () use ($app) {
             $mapper = new \LVAC\Race\Mapper($app['db']);
-            $allResults = $mapper->getResults(5);
+            $allResults = $mapper->getResults();
             $results = $mapper->groupByYear($allResults);
-            $races = $mapper->getFutureRaces(5);
+            $races = $mapper->getFutureRaces();
             return $app['twig']->render('races/index.html', array('results' => $results, 'races' => $races));
         });
 
