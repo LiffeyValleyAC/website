@@ -53,4 +53,14 @@ class RaceTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(5, count($result));
     }
+
+    public function testGetMapReturnsAnArrayWithCoordinates()
+    {
+        $race = new \LVAC\Race\Mapper($this->db);
+        $result = $race->getFutureRaces(1);
+        $map = $result[0]->getMap();
+
+        $this->assertTrue(array_key_exists('latitude', $map));
+        $this->assertTrue(array_key_exists('longitude', $map));
+    }
 }
