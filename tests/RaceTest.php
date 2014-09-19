@@ -25,7 +25,19 @@ class RaceTest extends \PHPUnit_Framework_TestCase
         $race_mapper = new \LVAC\Race\Mapper($this->db);
         $faker = \Faker\Factory::create();
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 20; $i++) {
+            $race = new \LVAC\Race\Race();
+            $race->setTitle($faker->sentence(rand(3, 10)));
+            $race->setDate($faker->dateTimeBetween('-3 years', 'now')->format('Y-m-d H:i:s'));
+            $race->setDescription($faker->paragraph(rand(3, 10)));
+            $race->setSlug($race->createSlug($race->getTitle(), $race->getDate()));
+            $race->setLatitude($faker->latitude());
+            $race->setLongitude($faker->longitude());
+
+            $race_mapper->save($race);
+        }
+
+        for ($i = 0; $i < 20; $i++) {
             $race = new \LVAC\Race\Race();
             $race->setTitle($faker->sentence(rand(3, 10)));
             $race->setDate($faker->dateTimeBetween('now', '3 months')->format('Y-m-d H:i:s'));
@@ -36,6 +48,22 @@ class RaceTest extends \PHPUnit_Framework_TestCase
 
             $race_mapper->save($race);
         }
+    }
+
+    public function testGetResultsReturnsTenRaceItemsByDefault()
+    {
+        $race = new \LVAC\Race\Mapper($this->db);
+        $result = $race->getResults();
+
+        $this->assertEquals(10, count($result));
+    }
+
+    public function testGetResultsReturnsFiveRaceItemsIfAsked()
+    {
+        $race = new \LVAC\Race\Mapper($this->db);
+        $result = $race->getResults(5);
+
+        $this->assertEquals(5, count($result));
     }
 
     public function testGetFutureRacesReturnsTenRaceItemsByDefault()

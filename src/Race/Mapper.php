@@ -17,9 +17,12 @@ class Mapper {
     public function getResults($limit = 10, $offset = 0)
     {
         $sql = "
-            SELECT * FROM races WHERE date < NOW() ORDER BY date DESC LIMIT :limit OFFSET :offset
+            SELECT * FROM races WHERE date < :now ORDER BY date DESC LIMIT :limit OFFSET :offset
             ";
         $stmt = $this->conn->prepare($sql);
+
+        $now = c::now();
+        $stmt->bindParam(':now', $now);
         $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
         $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
         $stmt->execute();
