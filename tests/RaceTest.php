@@ -1,6 +1,8 @@
 <?php
 namespace LVAC\Test\Race;
 
+use \Carbon\Carbon as c;
+
 class RaceTest extends \PHPUnit_Framework_TestCase
 {
     protected $db;
@@ -90,5 +92,25 @@ class RaceTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue(array_key_exists('latitude', $map));
         $this->assertTrue(array_key_exists('longitude', $map));
+    }
+
+    public function testDateIsSetToNowIfPassedANullValue()
+    {
+        c::setTestNow(c::createFromDate(2013, 12, 18));
+        $expected = c::now();
+
+        $race = new \LVAC\Race\Race();
+        $race->setDate();
+        $result = $race->getDate();
+
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testSlugGetsCreated()
+    {
+        $race = new \LVAC\Race\Race();
+        $result = $race->createSlug('This is a title', c::createFromDate(2013, 12, 22, 'Europe/Dublin'));
+
+        $this->assertEquals('20131222-this-is-a-title', $result);
     }
 }
