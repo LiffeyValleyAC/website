@@ -1,6 +1,7 @@
 <?php
 namespace LVAC\Test\Race;
 
+use \LVAC\Slug;
 use \Carbon\Carbon as c;
 
 class RaceTest extends \PHPUnit_Framework_TestCase
@@ -32,7 +33,7 @@ class RaceTest extends \PHPUnit_Framework_TestCase
             $race->setTitle($faker->sentence(rand(3, 10)));
             $race->setDate($faker->dateTimeBetween('-3 years', 'now')->format('Y-m-d H:i:s'));
             $race->setDescription($faker->paragraph(rand(3, 10)));
-            $race->setSlug($race->createSlug($race->getTitle(), $race->getDate()));
+            $race->setSlug(Slug::create($race->getTitle(), $race->getDate()));
             $race->setLatitude($faker->latitude());
             $race->setLongitude($faker->longitude());
 
@@ -44,7 +45,7 @@ class RaceTest extends \PHPUnit_Framework_TestCase
             $race->setTitle($faker->sentence(rand(3, 10)));
             $race->setDate($faker->dateTimeBetween('now', '3 months')->format('Y-m-d H:i:s'));
             $race->setDescription($faker->paragraph(rand(3, 10)));
-            $race->setSlug($race->createSlug($race->getTitle(), $race->getDate()));
+            $race->setSlug(Slug::create($race->getTitle(), $race->getDate()));
             $race->setLatitude($faker->latitude());
             $race->setLongitude($faker->longitude());
 
@@ -104,13 +105,5 @@ class RaceTest extends \PHPUnit_Framework_TestCase
         $result = $race->getDate();
 
         $this->assertEquals($expected, $result);
-    }
-
-    public function testSlugGetsCreated()
-    {
-        $race = new \LVAC\Race\Race();
-        $result = $race->createSlug('This is a title', c::createFromDate(2013, 12, 22, 'Europe/Dublin'));
-
-        $this->assertEquals('20131222-this-is-a-title', $result);
     }
 }

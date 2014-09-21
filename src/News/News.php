@@ -1,6 +1,7 @@
 <?php
 namespace LVAC\News;
 
+use \LVAC\Slug;
 use \Carbon\Carbon as c;
 
 class News extends \LVAC\Model
@@ -22,18 +23,8 @@ class News extends \LVAC\Model
     public function setSlug($slug = null)
     {
         if($slug === null) {
-            $slug = $this->createSlug($this->title, $this->date);
+            $slug = Slug::create($this->title, $this->date);
         }
         $this->slug = $slug;
-    }
-
-    public function createSlug($title, $date)
-    {
-        $date = $date->format('Ymd');
-        $title = strtolower($title);
-        $title = preg_replace('/[^a-z ]/', '', $title);
-        $title = preg_replace('/ /', '-', $title);
-
-        return "{$date}-{$title}";
     }
 }

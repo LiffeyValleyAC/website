@@ -1,6 +1,7 @@
 <?php
 namespace LVAC\Test\News;
 
+use \LVAC\Slug;
 use \Mockery as m;
 use \Carbon\Carbon as c;
 
@@ -31,7 +32,7 @@ class NewsTest extends \PHPUnit_Framework_TestCase
             $news->setTitle($faker->sentence(rand(3, 10)));
             $news->setBody($faker->paragraph(rand(3, 10)));
             $news->setDate($faker->dateTimeBetween('-3 years', 'now')->format('Y-m-d H:i:s'));
-            $news->setSlug($news->createSlug($news->getTitle(), $news->getDate()));
+            $news->setSlug(Slug::create($news->getTitle(), $news->getDate()));
             $news->setLocation($faker->streetName());
 
             $news_mapper->save($news);
@@ -151,7 +152,7 @@ class NewsTest extends \PHPUnit_Framework_TestCase
     public function testSlugGetsCreated()
     {
         $news = new \LVAC\News\News();
-        $result = $news->createSlug('This is a title', c::createFromDate(2013, 12, 22, 'Europe/Dublin'));
+        $result = Slug::create('This is a title', c::createFromDate(2013, 12, 22, 'Europe/Dublin'));
 
         $this->assertEquals('20131222-this-is-a-title', $result);
     }

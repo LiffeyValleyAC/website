@@ -9,6 +9,8 @@ if (!defined('APP_ROOT')) {
 // Include the composer stuff
 require APP_ROOT . 'vendor/autoload.php';
 
+use \LVAC\Slug;
+
 $db = new \PDO(
     'sqlite:LVAC.sqlite'
 );
@@ -20,7 +22,7 @@ for ($i = 0; $i < 20; $i++) {
     $news->setTitle($faker->sentence(rand(3, 10)));
     $news->setBody($faker->paragraph(rand(3, 10)));
     $news->setDate($faker->dateTimeBetween('-3 years', 'now')->format('Y-m-d H:i:s'));
-    $news->setSlug($news->createSlug($news->getTitle(), $news->getDate()));
+    $news->setSlug(Slug::create($news->getTitle(), $news->getDate()));
 
     $news_mapper->save($news);
 }
