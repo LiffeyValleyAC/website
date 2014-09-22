@@ -85,6 +85,23 @@ class RaceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(5, count($result));
     }
 
+    public function testGetRaceBySlug()
+    {
+        $faker = \Faker\Factory::create();
+        $mapper = new \LVAC\Race\Mapper($this->db);
+
+        $expected = new \LVAC\Race\Race();
+        $expected->setTitle('Annual 10k');
+        $expected->setDate('2014-06-06 12:00:00');
+        $expected->setSlug('20140606-annual-10k');
+
+        $mapper->save($expected);
+
+        $result = $mapper->getRaceBySlug('20140606-annual-10k');
+
+        $this->assertEquals($expected->getTitle(), $result->getTitle());
+    }
+
     public function testGetMapReturnsAnArrayWithCoordinates()
     {
         $race = new \LVAC\Race\Mapper($this->db);
