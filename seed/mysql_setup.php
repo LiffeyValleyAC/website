@@ -49,7 +49,9 @@ $db->exec("
     CREATE TABLE users (
         id INT(11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
         email VARCHAR(255),
-        password VARCHAR(255)
+        password VARCHAR(255),
+        name VARCHAR(255),
+        nickname VARCHAR(255)
     )
     ");
 
