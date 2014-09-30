@@ -37,12 +37,13 @@ h2, h3 {
 .navbar {
   background-color: #254467;
   border-color: #254467;
-  margin-bottom: 0;
+  margin-bottom: -10px;
 }
-.navbar-default .navbar-nav > li > a {
+.navbar-default .nav-pills > li > a {
   color: #f9ed32;
+  border-radius: 0;
 }
-.navbar-default .navbar-nav > li > a:hover {
+.navbar-default .nav-pills > li > a:hover {
   background-color: #369;
   color: #fea;
   text-decoration: underline;
