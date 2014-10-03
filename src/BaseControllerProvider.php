@@ -29,6 +29,10 @@ class BaseControllerProvider implements ControllerProviderInterface
             return $app['twig']->render('records.html');
         });
 
+        $controllers->get('/funny_old_game', function () use ($app) {
+            return $app['twig']->render('funny_old_game.html');
+        });
+
         $controllers->get('/gallery', function () use ($app) {
             return $app['twig']->render('gallery.html');
         });
