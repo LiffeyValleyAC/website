@@ -29,10 +29,13 @@ h2, h3 {
 .yellow {
   color: #f9ed32;
 }
-#header img {
+#header img.logo {
   position: absolute;
   top: 20px;
   left: 215px;
+}
+.facebook {
+  padding-right: 15px;
 }
 .navbar {
   background-color: #254467;
