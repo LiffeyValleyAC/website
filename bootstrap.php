@@ -28,6 +28,7 @@ $app->register(new Silex\Provider\SessionServiceProvider());
 $app->mount('/', new LVAC\BaseControllerProvider());
 $app->mount('/news', new LVAC\News\ControllerProvider());
 $app->mount('/races', new LVAC\Race\ControllerProvider());
+$app->mount('/gallery', new LVAC\Gallery\ControllerProvider());
 $app->mount('/members', new LVAC\Member\ControllerProvider());
 
 $app->get('/login', function () use ($app) {

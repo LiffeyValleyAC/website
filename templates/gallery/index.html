@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Gallery - {% endblock %}
+{% block content %}
+<div class="row">
+  <div class="bar">
+    &nbsp;
+  </div>
+</div>
+<div class="row content">
+  <div class="col-md-8">
+    {% for album in albums %}
+    <a href="#"><img src="http://farm{{ album.farm }}.static.flickr.com/{{ album.server }}/{{ album.primary }}_{{ album.secret }}_m.jpg" alt="{{ album.title }}"></a>
+    {% endfor %}
+  </div>
+  <div class="col-md-4">
+  </div>
+</div>
+{% endblock %}
