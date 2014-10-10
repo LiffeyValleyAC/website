@@ -15,4 +15,9 @@ class GalleryTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(array_key_exists('primary', $result[0]));
         $this->assertTrue(array_key_exists('secret', $result[0]));
     }
+    public function testGetAlbumPhotos()
+    {
+        $gallery = new \LVAC\Gallery\Mapper();
+        $result = $gallery->getAlbumPhotos('72157648574929722');
+    }
 }

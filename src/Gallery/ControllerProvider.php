@@ -17,6 +17,12 @@ class ControllerProvider implements ControllerProviderInterface
             return $app['twig']->render('gallery/index.html', array('albums' => $albums));
         });
 
+        $controllers->get('/album/{id}', function (Application $app, $id) {
+            $mapper = new \LVAC\Gallery\Mapper();
+            $photos = $mapper->getAlbumPhotos($id);
+            return $app['twig']->render('gallery/album.html', array('photos' => $photos));
+        });
+
         return $controllers;
     }
 }

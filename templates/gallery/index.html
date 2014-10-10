@@ -11,7 +11,7 @@
   <ul>
     {% for album in albums %}
     <li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-    <a href="#">
+    <a href="/gallery/album/{{ album.id }}">
       <img src="http://farm{{ album.farm }}.static.flickr.com/{{ album.server }}/{{ album.primary }}_{{ album.secret }}_m.jpg" alt="{{ album.title }}" class="img-rounded">
       <h4 class="caption">
         {{ album.title }}
