@@ -8,12 +8,17 @@
   </div>
 </div>
 <div class="row content">
-  <div class="col-md-8">
+  <ul>
     {% for album in albums %}
-    <a href="#"><img src="http://farm{{ album.farm }}.static.flickr.com/{{ album.server }}/{{ album.primary }}_{{ album.secret }}_m.jpg" alt="{{ album.title }}"></a>
+    <li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+    <a href="#">
+      <img src="http://farm{{ album.farm }}.static.flickr.com/{{ album.server }}/{{ album.primary }}_{{ album.secret }}_m.jpg" alt="{{ album.title }}" class="img-rounded">
+      <h4 class="caption">
+        {{ album.title }}
+      </h4>
+    </a>
+    </li>
     {% endfor %}
-  </div>
-  <div class="col-md-4">
-  </div>
+  </ul>
 </div>
 {% endblock %}
