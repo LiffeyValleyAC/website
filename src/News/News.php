@@ -11,6 +11,7 @@ class News extends \LVAC\Model
     protected $date;
     protected $slug;
     protected $location;
+    protected $teaser;
 
     public function setDate($date = null)
     {
@@ -26,5 +27,13 @@ class News extends \LVAC\Model
             $slug = Slug::create($this->title, $this->date);
         }
         $this->slug = $slug;
+    }
+
+    public function getTeaser()
+    {
+        if (sizeof($this->body) > 100) {
+            return $this->body;
+        }
+        return $this->body;
     }
 }
