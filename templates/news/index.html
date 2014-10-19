@@ -14,7 +14,7 @@
     <h3><a href="/news/{{ article.getSlug }}">{{ article.getTitle }}</a>
       <small>{{ article.getDate | date("l, F jS, Y") }}</small>
     </h3>
-    <p>{{ article.getTeaser|raw }}</p>
+    <p>{{ article.getTeaser|raw }}... <a href="/news/{{ article.getSlug }}">read more</a></p>
     <hr>
     {% endfor %}
     <ul class="pager">
