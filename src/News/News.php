@@ -32,7 +32,7 @@ class News extends \LVAC\Model
     public function getTeaser()
     {
         if (strlen($this->body) > 200) {
-            return substr($this->body, 0, 200);
+            return trim(substr($this->body, 0, 200));
         }
         return $this->body;
     }
