@@ -5,6 +5,38 @@ use \Carbon\Carbon as c;
 
 class ResultTest extends \PHPUnit_Framework_TestCase
 {
+    protected $db;
+    public function setUpRace()
+    {
+        $this->db = new \PDO(
+            'sqlite::memory:'
+        );
+        $sql = "CREATE TABLE results
+            (
+                id INTEGER PRIMARY KEY ASC,
+                name TEXT,
+                duration TEXT,
+                handicap TEXT,
+                place INTEGER,
+                race_id INTEGER
+            )";
+        $this->db->exec($sql);
+
+        $result_mapper = new \LVAC\Result\Mapper($this->db);
+        $faker = \Faker\Factory::create();
+
+        for ($i = 0; $i < 20; $i++) {
+            $result = new \LVAC\Result\Result();
+            $result->setName($faker->name);
+            $result->setDuration('PT'.$faker->numberBetween(0,59).'M'.$faker->numberBetween(0,59).'S');
+            $result->setHandicap('PT'.$faker->numberBetween(0,9).'M'.$faker->numberBetween(0,59).'S');
+            $result->setPlace($faker->numberBetween(1,20));
+            $result->setRaceId(1);
+
+            $result_mapper->save($result);
+        }
+    }
+
     public function testGetDuration()
     {
         $model = new \LVAC\Result\Result();
@@ -55,5 +87,14 @@ class ResultTest extends \PHPUnit_Framework_TestCase
         $result = $model->getNett();
 
         $this->assertEquals('09m 00s', $result);
+    }
+
+    public function testGG()
+    {
+        $this->setUpRace();
+        $mapper = new \LVAC\Result\Mapper($this->db);
+        $result = $mapper->getResultsOfRace(1);
+
+        $this->assertEquals(20, count($result));
     }
 }

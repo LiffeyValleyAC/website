@@ -9,6 +9,7 @@ class Result extends \LVAC\Model
     protected $handicap;
     protected $nett;
     protected $place;
+    protected $race_id;
 
     public function getDuration()
     {
@@ -36,5 +37,15 @@ class Result extends \LVAC\Model
         $e->add($duration);
         $f->add($handicap);
         return $f->diff($e)->format("%Im %Ss");
+    }
+
+    public function setRaceId($raceId)
+    {
+        $this->race_id = $raceId;
+    }
+
+    public function getRaceId()
+    {
+        return $this->race_id;
     }
 }
