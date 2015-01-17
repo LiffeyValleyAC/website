@@ -68,7 +68,7 @@
         <ul>
           {% for article in news %}
           <li class="news">
-          <a href="/news/{{ article.getSlug }}">{{ article.getTitle }}</a>
+          <a href="/news/{{ article.getSlug }}">{{ article.getTitle }}</a><br>
           <small>{{ article.getDate | date("l, F jS, Y") }}</small>
           </li>
           {% endfor %}
