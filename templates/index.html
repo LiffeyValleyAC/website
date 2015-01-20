@@ -50,32 +50,28 @@
   </div>
 </div>
 <div class="row content">
-  <div class="col-md-8">
+  <div class="col-md-4">
     <h2>Interested in running?</h2>
     <h3>Enjoy running with other people?</h3>
     <h3>How would you like to move your running to a new level?</h3>
-    <div class="row">
-      <div class="col-md-6">
-        <p>Liffey Valley Athletics Club are an Islandbridge based club welcoming new members.
-        <p>We welcome runners of all ages who are looking to improve their running through accessible, structured training sessions within a welcoming and encouraging environment.
-        <p>We compete year-round in cross-country, track and road races. We have expert coaches who plan training to help you race to your full potential
-        <p>If you would like to experience the unique training atmosphere you will find in our club, why not come along to our Tuesday and Thursday Training Sessions
-        <p>We meet at 6.45pm at our club house in Islandbridge
-        <p>We are located near the Phoenix Park or meet us on <a href="https://www.facebook.com/liffeyvalleyac">Facebook</a>
-      </div>
-      <div class="col-md-6">
-        <h2>News</h2>
-        <ul>
-          {% for article in news %}
-          <li class="news">
-          <a href="/news/{{ article.getSlug }}">{{ article.getTitle }}</a><br>
-          <small>{{ article.getDate | date("l, F jS, Y") }}</small>
-          </li>
-          {% endfor %}
-        </ul>
-        <span class="news"><a href="/news">More News</a></span>
-      </div>
-    </div>
+    <p>Liffey Valley Athletics Club are an Islandbridge based club welcoming new members.
+    <p>We welcome runners of all ages who are looking to improve their running through accessible, structured training sessions within a welcoming and encouraging environment.
+    <p>We compete year-round in cross-country, track and road races. We have expert coaches who plan training to help you race to your full potential
+    <p>If you would like to experience the unique training atmosphere you will find in our club, why not come along to our Tuesday and Thursday Training Sessions
+    <p>We meet at 6.45pm at our club house in Islandbridge
+    <p>We are located near the Phoenix Park or meet us on <a href="https://www.facebook.com/liffeyvalleyac">Facebook</a>
+  </div>
+  <div class="col-md-4">
+    <h2>News</h2>
+    <ul>
+      {% for article in news %}
+      <li class="news">
+      <a href="/news/{{ article.getSlug }}">{{ article.getTitle }}</a><br>
+      <small>{{ article.getDate | date("l, F jS, Y") }}</small>
+      </li>
+      {% endfor %}
+    </ul>
+    <span class="news"><a href="/news">More News</a></span>
   </div>
   <div class="col-md-4">
     <div class="join">
