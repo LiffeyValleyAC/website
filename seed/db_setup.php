@@ -43,6 +43,9 @@ $db->exec("CREATE TABLE training (id INTEGER PRIMARY KEY ASC, user_id INTEGER, d
 $db->exec("INSERT INTO training (id, user_id, date, title, description) VALUES (1, 1, '2014-02-01 17:00', '8x 200m', 'Cold and wet. Tough session')");
 
 $db->exec("DROP TABLE IF EXISTS races");
-$db->exec("CREATE TABLE races (id INTEGER PRIMARY KEY ASC, title TEXT, date)");
+$db->exec("CREATE TABLE races (id INTEGER PRIMARY KEY ASC, title TEXT, date, description TEXT, slug TEXT, latitude, longitude)");
 
-$db->exec("INSERT INTO races (id, title, date) VALUES (1, 'Myles Cullen 10k', '2014-09-15 11:30')");
+$db->exec("INSERT INTO races (id, title, date, description, slug, latitude, longitude) VALUES (1, 'Myles Cullen 10k', '2014-09-15 11:30', '', '20140915-myles-cullen-10k', '', '')");
+
+$db->exec("DROP TABLE IF EXISTS results");
+$db->exec("CREATE TABLE results (id INTEGER PRIMARY KEY ASC, name TEXT, duration, handicap, place INTEGER, race_id INTEGER)");
