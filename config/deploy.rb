@@ -3,6 +3,7 @@ lock '3.1.0'
 
 set :application, 'lvac'
 set :repo_url, 'git@github.com:LiffeyValleyAC/website.git'
+# set :branch, "three-column-indexpage"
 
 set :deploy_to, '/var/www/lvac'
 
