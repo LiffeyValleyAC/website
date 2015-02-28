@@ -52,6 +52,30 @@ class WebTest extends WebTestCase
         $this->assertRegexp('/History/', $crawler->filterXpath('//title')->text());
     }
 
+    public function testRecordsPage()
+    {
+        $client = $this->createClient();
+        $crawler = $client->request('GET', '/records');
+
+        $this->assertTrue(
+            $client->getResponse()->isOK(),
+            "The web page response is wrong"
+        );
+        $this->assertRegexp('/Records/', $crawler->filterXpath('//title')->text());
+    }
+
+    public function testFunnyOldGamePage()
+    {
+        $client = $this->createClient();
+        $crawler = $client->request('GET', '/funny_old_game');
+
+        $this->assertTrue(
+            $client->getResponse()->isOK(),
+            "The web page response is wrong"
+        );
+        $this->assertRegexp('/Funny Old Game/', $crawler->filterXpath('//title')->text());
+    }
+
     public function testContactPage()
     {
         $client = $this->createClient();
