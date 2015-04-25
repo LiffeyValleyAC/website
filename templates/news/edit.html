@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ news.getTitle }} - {% endblock %}
+{% block content %}
+<div class="row">
+  <div class="bar">
+    &nbsp;
+  </div>
+</div>
+<div class="row content">
+  <div class="col-md-12">
+    <hr>
+    <h3>{{ news.getTitle }}
+      <small>{{ news.getDate | date("l, F jS, Y") }}</small>
+    </h3>
+    <p>{{ news.getLocation }}</p>
+    <form>
+      <textarea class="form-control" rows="10">{{ news.getBody|raw }}</textarea>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+    <hr>
+  </div>
+</div>
+{% endblock %}
