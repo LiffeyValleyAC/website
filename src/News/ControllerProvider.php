@@ -40,7 +40,7 @@ class ControllerProvider implements ControllerProviderInterface
           $news = $mapper->getNewsBySlug($slug);
           $news->setBody($app['request']->get('body'));
           $mapper->save($news);
-          return $app->redirect('/news/edit/'.$slug);
+          return $app->redirect('/news/'.$slug);
         });
         return $controllers;
     }
