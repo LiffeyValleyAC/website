@@ -71,10 +71,18 @@ class Mapper {
     public function save(\LVAC\News\News $news)
     {
         $sql = "
-            INSERT INTO news (title, body, date, slug, location) VALUES (?, ?, ?, ?, ?)
+            INSERT INTO news (id, title, body, date, slug, location)
+            VALUES (?, ?, ?, ?, ?, ?)
+            ON DUPLICATE KEY UPDATE
+              title = values(title),
+              body = values(body),
+              date = values(date),
+              slug = values(slug),
+              location = values(location)
             ";
         $stmt = $this->conn->prepare($sql);
         $binds = array(
+            $news->getId(),
             $news->getTitle(),
             $news->getBody(),
             $news->getDate(),
@@ -91,6 +99,7 @@ class Mapper {
     public function createNewsFromRow($row)
     {
         $news = new News();
+        $news->setId($row['id']);
         $news->setTitle($row['title']);
         $news->setBody($row['body']);
         $news->setDate($row['date']);

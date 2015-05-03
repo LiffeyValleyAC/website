@@ -35,12 +35,12 @@ class ControllerProvider implements ControllerProviderInterface
           return $app['twig']->render('news/edit.html',array('news' => $news));
         });
 
-        $controllers->post('/edit/{slug}', function (Application $app, Request $request, $slug) {
+        $controllers->post('/edit/{slug}', function (Application $app, $slug) {
           $mapper = new \LVAC\News\Mapper($app['db']);
           $news = $mapper->getNewsBySlug($slug);
-          $news->setBody($request->get('body'));
+          $news->setBody($app['request']->get('body'));
           $mapper->save($news);
-          return $app->redirect('/edit/'.$slug);
+          return $app->redirect('/news/edit/'.$slug);
         });
         return $controllers;
     }
