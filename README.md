@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/LiffeyValleyAC/website.png?branch=master)](https://travis-ci.org/LiffeyValleyAC/website)
 
-# This is not longer being updated, go to [LiffeyValleyAC.github.io](https://github.com/LiffeyValleyAC/LiffeyValleyAC.github.io) instead
+# This is no longer being updated, go to [LiffeyValleyAC.github.io](https://github.com/LiffeyValleyAC/LiffeyValleyAC.github.io) instead
 
 ## About
 
