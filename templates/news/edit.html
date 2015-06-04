@@ -10,11 +10,14 @@
 <div class="row content">
   <div class="col-md-12">
     <hr>
-    <h3><a href="/news/edit/{{ news.getSlug }}">{{ news.getTitle }}</a>
+    <h3>{{ news.getTitle }}
       <small>{{ news.getDate | date("l, F jS, Y") }}</small>
     </h3>
     <p>{{ news.getLocation }}</p>
-    {{ news.getBody|raw }}
+    <form method="post">
+      <textarea class="form-control" rows="10" name="body">{{ news.getBody|raw }}</textarea>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
     <hr>
   </div>
 </div>
